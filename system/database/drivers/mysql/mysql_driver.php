@@ -136,7 +136,7 @@ class CI_DB_mysql_driver extends CI_DB {
 			: mysql_connect($this->hostname, $this->username, $this->password, TRUE, $client_flags);
 
 		// ----------------------------------------------------------------
-
+		$this->simple_query('SET NAMES utf8');
 		// Select the DB... assuming a database name is specified in the config file
 		if ($this->database !== '' && ! $this->db_select())
 		{

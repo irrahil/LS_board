@@ -49,7 +49,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'lars/view';
-$route['(:any)'] = 'lars/view/$1';
+//Обработчики user_ctrl
+$route['cmd_reg_user'] 	= 'user_ctrl/reg_user';
+$route['cmd_login'] 	= 'user_ctrl/login';
+$route['cmd_edit_user'] = 'user_ctrl/edit_user_info';
+
+
+//Обработчики board_ctrl
+#$route['
+
+//Отображение страниц user_ctrl
+$route['registry'] 		= 'user_ctrl/view/reg_view';
+$route['user'] 			= 'user_ctrl/get_user_info';
+$route['restore'] 		= 'user_ctrl/view/restore_req_view';
+$route['restoring'] 	= 'user_ctrl/view/restore_view';
+
+//Отображение страниц board_ctrl
+$route['board']			= 'board_ctrl/view/main_view';
+$route['new_task'] 		= 'board_ctrl/view/new_task_view';
+$route['task']			= 'board_ctrl/view/edit_task_view';
+$route['new_cat']		= 'board_ctrl/view/new_category_view';
+$route['cat']			= 'board_ctrl/view/edit_category_view';
+$route['new_entry']		= 'board_ctrl/view/new_schedule_view';
+$route['user_entry']	= 'board_ctrl/view/edit_schedule_view';
+$route['new_status']	= 'board_ctrl/view/new_status_view';
+$route['status']		= 'board_ctrl/view/edit_status_view';
+
+
+$route['default_controller'] = 'user_ctrl/view';
+
+$route['(:any)'] = 'user_ctrl/view/login_view';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
