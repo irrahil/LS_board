@@ -56,8 +56,19 @@ $route['cmd_edit_user'] = 'user_ctrl/edit_user_info';
 
 
 //Обработчики board_ctrl
-#$route['
-
+$route['cmd_new_task']			= 'board_ctrl/add_new_task';
+$route['cmd_edit_task']			= 'board_ctrl/edit_task';
+$route['cmd_delete_task']		= 'board_ctrl/delete_task';
+$route['cmd_new_category']		= 'board_ctrl/add_new_category';
+$route['cmd_edit_category']		= 'board_ctrl/edit_category';
+$route['cmd_delete_category']	= 'board_ctrl/delete_category';
+$route['cmd_new_schedule']		= 'board_ctrl/add_new_schedule';
+$route['cmd_edit_schedule']		= 'board_ctrl/edit_schedule';
+$route['cmd_delete_schedule']	= 'board_ctrl/delete_schedule';
+$route['cmd_new_status']		= 'board_ctrl/add_new_status';
+$route['cmd_edit_status']		= 'board_ctrl/edit_status';
+$route['cmd_delete_status']		= 'board_ctrl/delete_status';
+ 
 //Отображение страниц user_ctrl
 $route['registry'] 		= 'user_ctrl/view/reg_view';
 $route['user'] 			= 'user_ctrl/get_user_info';
@@ -65,15 +76,17 @@ $route['restore'] 		= 'user_ctrl/view/restore_req_view';
 $route['restoring'] 	= 'user_ctrl/view/restore_view';
 
 //Отображение страниц board_ctrl
-$route['board']			= 'board_ctrl/view/main_view';
-$route['new_task'] 		= 'board_ctrl/view/new_task_view';
-$route['task']			= 'board_ctrl/view/edit_task_view';
-$route['new_cat']		= 'board_ctrl/view/new_category_view';
-$route['cat']			= 'board_ctrl/view/edit_category_view';
-$route['new_entry']		= 'board_ctrl/view/new_schedule_view';
-$route['user_entry']	= 'board_ctrl/view/edit_schedule_view';
-$route['new_status']	= 'board_ctrl/view/new_status_view';
-$route['status']		= 'board_ctrl/view/edit_status_view';
+$route['board']					= 'board_ctrl/view/main_view';
+$route['new_task'] 				= 'board_ctrl/view/new_task_view';
+$route['task']					= 'board_ctrl/view/edit_task_view';
+$route['new_cat']				= 'board_ctrl/view/new_category_view';
+$route['cat']					= 'board_ctrl/view/edit_category_view';
+$route['new_entry']				= 'board_ctrl/view/new_schedule_view';
+$route['user_entry']			= 'board_ctrl/view/edit_schedule_view';
+$route['new_status']			= 'board_ctrl/view/new_status_view';
+$route['status']				= 'board_ctrl/view/edit_status_view';
+$route['new_board_entry']		= 'board_ctrl/view/new_board_entry_view';
+$route['board_entry']			= 'board_ctrl/view/edit_board_entry_view';
 
 
 $route['default_controller'] = 'user_ctrl/view';
