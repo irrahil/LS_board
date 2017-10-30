@@ -53,6 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['cmd_reg_user'] 	= 'user_ctrl/reg_user';
 $route['cmd_login'] 	= 'user_ctrl/login';
 $route['cmd_edit_user'] = 'user_ctrl/edit_user_info';
+$route['cmd_exit']		= 'user_ctrl/exit_from_app';
 
 
 //Обработчики board_ctrl

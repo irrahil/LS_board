@@ -51,7 +51,7 @@ class user_ctrl extends CI_Controller {
 		else {
 			$data['reg_success'] = true;
 			$data['reg_username'] = $username;
-			$this->view('main', $data);
+			$this->view('login_view', $data);
 		}
 	}
 	
@@ -65,7 +65,7 @@ class user_ctrl extends CI_Controller {
 		if ($this->user_model->check_user($username, $passhash) ) {
 			$user_id =  $this->user_model->get_user_id($username);
 			$this->session->set_userdata('user_id', $user_id);
-			$this->session->set_userdata('user_name', $this->user_model->get_user_info($user_id)['name'] );
+			$this->session->set_userdata('user_name', $this->user_model->get_user_info($user_id)[0]['user_name'] );
 			header("Location: /index.php/board");
 		}
 		else {
@@ -128,8 +128,20 @@ class user_ctrl extends CI_Controller {
 		$cur_user_id	=	$this->session->user_id;
 		#print_r($cur_user_id);
 		if ($cur_user_id != false) {
-			$this->view('user_view', $this->user_model->get_user_info($cur_user_id) );  
+			$userdata = $this->user_model->get_user_info($cur_user_id)[0];
+			$data = array();
+			$data['user_id'] = $userdata['user_id'];
+			$data['userlogin'] = $userdata['user_login'];
+			$data['email'] = $userdata['user_email'];
+			$data['user_name'] = $userdata['user_name'];
+			$this->view('user_view', $data );  
 		}
+	}
+	
+	
+	public function exit_from_app() {
+		$this->session->sess_destroy();
+		header("Location: /index.php");
 	}
 	
 }

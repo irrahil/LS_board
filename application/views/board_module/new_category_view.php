@@ -17,6 +17,23 @@
 	
 	<div class="cat_form_str">
 	
+		<div class="cat_form_label">
+			Права доступа к категории:
+		</div>
+		
+		<div class="cat_form_field">
+			<select name="categoryaccess[]" multiple size=10>
+				<?php foreach ($user_list as $user) {
+					echo '<option value="', $user['user_id'], '">', $user['user_name'] ,'</option>';
+				}
+				?>
+			</select>
+		</div>
+	
+	</div>
+	
+	<div class="cat_form_str">
+	
 		<div class="cat_form_button">
 			<input type=submit value="Добавить новый элемент">
 		</div>

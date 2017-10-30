@@ -93,17 +93,21 @@ class user_model extends CI_Model {
 	
 	
 	//Получение данных о пользователе
-	public function get_user_info($user_id) {
-		$query_cond = array('user_id' => $user_id);
-		$res = $this->db->get_where('users', $query_cond)->result();
-		if (count($res) > 0) {
-			$data = array(
-							'userlogin' => base64_decode($res[0]->user_login),
-							'email' => base64_decode($res[0]->user_email),
-							'name' => base64_decode($res[0]->user_name) 
-						  );
-			return $data;
+	public function get_user_info($user_id = null) {
+		if ($user_id != null)
+			$this->db->where('user_id', $user_id);
+		$res = $this->db->get('users')->result();
+		$data = array();
+		foreach ($res as $res_str) {
+			$obj = array(
+						'user_id' 			=> $res_str->user_id,
+						'user_login' 		=> base64_decode($res_str->user_login),
+						'user_name' 		=> base64_decode($res_str->user_name),
+						'user_email'		=> base64_decode($res_str->user_email)
+						);
+			array_push($data, $obj);
 		}
+		return $data;
 		return null;
 	}
 }
