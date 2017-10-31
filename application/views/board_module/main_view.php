@@ -4,7 +4,7 @@
 
 	<table border=1 width=100%>
 		<?php foreach($board_info AS $board_entry) : ?>
-			<tr>
+			<tr style="color: <?php echo $board_entry['status_color']; ?>;">
 				<td>
 					<?php echo $board_entry['schedule_date']; ?>
 				</td>
@@ -18,7 +18,9 @@
 					<?php echo $board_entry['task_name'], ' (', $board_entry['category_name'], ')'; ?>
 				</td>
 				<td>
-					<?php echo '<font color="', $board_entry['status_color'], '">', $board_entry['status_name'], '</font>'; ?>
+					<?php echo #'<font color="', $board_entry['status_color'], '">', 
+								$board_entry['status_name']
+								#, '</font>'; ?>
 				</td>
 				<td>
 					<?php echo '<a href="/index.php/board_entry?rec_id=', $board_entry['rec_id'], '">Edit</a>'; ?>
