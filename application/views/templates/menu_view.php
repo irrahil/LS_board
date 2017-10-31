@@ -12,16 +12,16 @@
 		<a href=/index.php/board>На главную</a>
 	</div>
 	<div class="menu_button">
-		<a href=/index.php/new_cat>Добавить новую категорию</a>
+		<a href=/index.php/categories>Категории задач</a>
 	</div>
 	<div class="menu_button">
-		<a href=/index.php/new_task>Добавить новую задачу</a>
+		<a href=/index.php/tasks>Задачи</a>
 	</div>
 	<div class="menu_button">
-		<a href=/index.php/new_status>Добавить новый статус задач</a>
+		<a href=/index.php/statuses>Статусы задач</a>
 	</div>
 	<div class="menu_button">
-		<a href=/index.php/new_entry>Добавить новую запись в расписание</a>
+		<a href=/index.php/schedules>Расписание</a>
 	</div>
 	<div class="menu_button">
 		<a href=/index.php/new_board_entry>Добавить новую запись на доску</a>

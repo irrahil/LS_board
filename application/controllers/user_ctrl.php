@@ -19,8 +19,11 @@ class user_ctrl extends CI_Controller {
 			$data['username'] = $this->session->user_name;
 		//drawing form
         $this->load->view('templates/header_view', $data);
-		if ($this->session->user_id != false) 
+		if ($this->session->user_id != false) {
+			if ($page == 'login_view')
+				header("Location: /index.php/board");
 			$this->load->view('templates/menu_view', $data);
+		}
         $this->load->view('user_module/'.$page, $data);
         $this->load->view('templates/footer_view', $data);
 	}
@@ -70,7 +73,7 @@ class user_ctrl extends CI_Controller {
 		}
 		else {
 			$data['login_failed'] = true;
-			$this->view('main', $data);
+			$this->view('login_view', $data);
 		}
 	}
 	

@@ -69,6 +69,9 @@ $route['cmd_delete_schedule']	= 'board_ctrl/delete_schedule';
 $route['cmd_new_status']		= 'board_ctrl/add_new_status';
 $route['cmd_edit_status']		= 'board_ctrl/edit_status';
 $route['cmd_delete_status']		= 'board_ctrl/delete_status';
+$route['cmd_new_entry']			= 'board_ctrl/add_board_entry';
+$route['cmd_edit_entry']		= 'board_ctrl/edit_board_entry';
+$route['cmd_delete_entry']		= 'board_ctrl/delete_board_entry';
  
 //Отображение страниц user_ctrl
 $route['registry'] 		= 'user_ctrl/view/reg_view';
@@ -88,7 +91,10 @@ $route['new_status']			= 'board_ctrl/view/new_status_view';
 $route['status']				= 'board_ctrl/view/edit_status_view';
 $route['new_board_entry']		= 'board_ctrl/view/new_board_entry_view';
 $route['board_entry']			= 'board_ctrl/view/edit_board_entry_view';
-
+$route['tasks']					= 'board_ctrl/view/task_list_view';
+$route['categories']			= 'board_ctrl/view/category_list_view';
+$route['statuses']				= 'board_ctrl/view/status_list_view';
+$route['schedules']				= 'board_ctrl/view/schedule_list_view';
 
 $route['default_controller'] = 'user_ctrl/view';
 
