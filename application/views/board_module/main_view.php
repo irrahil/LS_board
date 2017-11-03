@@ -4,7 +4,12 @@
 
 	<table border=1 width=100%>
 		<?php foreach($board_info AS $board_entry) : ?>
-			<tr style="color: <?php echo $board_entry['status_color']; ?>;">
+			<tr style="color: <?php echo $board_entry['status_color']; ?>; 
+				      <?php if ($board_entry['schedule_date'] == date_create("now", new DateTimeZone("Europe/Moscow") )->format("Y-m-d") )
+								echo " font-weight: bold;";
+							else
+								echo " font-size: 80%;";
+					  ?>">
 				<td>
 					<?php echo $board_entry['schedule_date']; ?>
 				</td>

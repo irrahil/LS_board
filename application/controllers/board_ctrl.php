@@ -1,4 +1,5 @@
 <?php
+define("SECURITY", true);
 
 class board_ctrl extends CI_Controller {
 	
@@ -23,7 +24,10 @@ class board_ctrl extends CI_Controller {
         $this->load->view('templates/header_view', $data);
 		if ($this->session->user_id != false) 
 			$this->load->view('templates/menu_view', $data);
-		
+		else if (SECURITY) {
+			header("Location: /index.php");
+			exit;
+		}
 		if ($page == 'new_task_view') {
 			$data['categories'] = $this->board_model->work_category('get');
 		}
@@ -87,12 +91,14 @@ class board_ctrl extends CI_Controller {
 		}
 		
 		if ($page == 'main_view') {
-			#$params = array();
-			#$d = date_create();
-			#$d->modify("-7 day");
-			#$params['day_begin'] = $d->format("Y-m-d");
-			#$d->modify("+14 day");
-			#$params['day_end'] =  $d->format("Y-m-d");
+			$params = array();
+			if ($this->input->cookie('board_show_all_days') == null) {
+				$d = date_create('now', new DateTimeZone('Europe/Moscow') );
+				$d->modify("-3 day");
+				$params['day_begin'] = $d->format("Y-m-d");
+				$d->modify("+4 day");
+				$params['day_end'] =  $d->format("Y-m-d");
+			}
 			#$data['days'] = $this->board_model->work_board_entry('get', $params);
 			#print_r($data['days']);
 			#$params = array();

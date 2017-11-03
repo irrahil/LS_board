@@ -279,6 +279,7 @@ class board_model extends CI_Model {
 									users.user_name
 								  ');
 				$this->db->join('users', 'users.user_id = schedules.user_id');
+				$this->db->order_by('schedules.schedule_date', 'ASC');
 				$res = $this->db->get('schedules')->result();
 				$data = array();
 				foreach ($res as $res_str) {
@@ -342,18 +343,18 @@ class board_model extends CI_Model {
 			
 			case 'get': {
 				//Получение уникальных записей расписания в заданный период
-				if (isset($params['day_begin'] ) AND isset($params['day_end']) ) {
-					$this->db->where('schedule_date >=', $params['day_begin']);
-					$this->db->where('schedule_date <=', $params['day_end']);
-					$this->db->select('schedule_date');
-					$this->db->distinct();
-					$res = $this->db->get('schedules')->result();
-					$data = array();
-					foreach ($res as $res_str) {
-						$data[] = $res_str->schedule_date;
-					}
-					return $data;
-				}
+				// if (isset($params['day_begin'] ) AND isset($params['day_end']) ) {
+					// $this->db->where('schedule_date >=', $params['day_begin']);
+					// $this->db->where('schedule_date <=', $params['day_end']);
+					// $this->db->select('schedule_date');
+					// $this->db->distinct();
+					// $res = $this->db->get('schedules')->result();
+					// $data = array();
+					// foreach ($res as $res_str) {
+						// $data[] = $res_str->schedule_date;
+					// }
+					// return $data;
+				// }
 				if (isset($params['rec_id']) )
 					$this->db->where('board.rec_id', $params['rec_id']);
 				if (isset($params['user_id'] ) )
@@ -385,6 +386,10 @@ class board_model extends CI_Model {
 				$this->db->join('users', 'users.user_id = board.user_id');
 				$this->db->join('schedules', 'schedules.rec_id = board.schedule_id');
 				#$this->db->where('user_access.user_id = board.user_id');
+				if (isset($params['day_begin'] ) AND isset($params['day_end']) ) {
+					$this->db->where('schedule_date >=', $params['day_begin']);
+					$this->db->where('schedule_date <=', $params['day_end']);
+				}
 				$this->db->order_by('schedules.schedule_date', 'ASC');
 				$this->db->order_by('board.user_id', 'ASC');
 				$this->db->order_by('board.rec_id', 'ASC');
@@ -403,7 +408,8 @@ class board_model extends CI_Model {
 									'status_name'			=> base64_decode($res_str->status_name),
 									'status_color'			=> $res_str->status_color,
 									'user_name'				=> base64_decode($res_str->user_name),
-									'category_name'			=> base64_decode($res_str->category_name)
+									'category_name'			=> base64_decode($res_str->category_name),
+									'schedule_id'			=> $res_str->schedule_id
 								);
 					array_push($data, $obj);
 				}

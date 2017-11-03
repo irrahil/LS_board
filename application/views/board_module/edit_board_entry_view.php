@@ -17,7 +17,7 @@
 				<?php 
 					foreach ($schedule_list as $record) {
 						echo '<option value=', $record['rec_id'];
-						if ($entry_info[0]['rec_id'] == $record['rec_id'])
+						if ($entry_info[0]['schedule_id'] == $record['rec_id'])
 							echo ' selected';
 					echo '>', $record['schedule_date'] , ": ", $record['schedule_time_begin'], " - ", $record['schedule_time_end'], "</option>";
 					}
@@ -37,7 +37,7 @@
 						echo '<option value=', $task['task_id'];
 						if ($entry_info[0]['task_id'] == $task['task_id'])
 							echo ' selected';
-						echo '>', $task['task_name'] , "</option>";
+						echo '>', $task['task_name'] , " (", $task['category_name'], ")</option>";
 					}
 				?>
 			</select>

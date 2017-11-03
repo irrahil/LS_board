@@ -34,7 +34,7 @@
 						echo '<option value=', $task['task_id'];
 						#if ($task_info[0]['status_id'] == $status['status_id'])
 						#	echo ' selected';
-						echo '>', $task['task_name'] , "</option>";
+						echo '>', $task['task_name'] , " (", $task['category_name'], ") [", $task['status_name'], "]</option>";
 					}
 				?>
 			</select>

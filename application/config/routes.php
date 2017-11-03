@@ -79,6 +79,7 @@ $route['user'] 			= 'user_ctrl/get_user_info';
 $route['restore'] 		= 'user_ctrl/view/restore_req_view';
 $route['restoring'] 	= 'user_ctrl/view/restore_view';
 
+
 //Отображение страниц board_ctrl
 $route['board']					= 'board_ctrl/view/main_view';
 $route['new_task'] 				= 'board_ctrl/view/new_task_view';

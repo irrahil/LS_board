@@ -45,11 +45,13 @@ class user_ctrl extends CI_Controller {
 		$verify_code = $this->input->post('verify_code');
 		$passhash = hash('sha256', $userpass + $username, false);
 		#print($username);
-		if ($verify_code !== VERIFY_CODE)
+		if ($verify_code !== VERIFY_CODE) {
+			$this->view('error_registry_view');
 			return;
+		}
 		$result = $this->user_model->reg_user($username, $passhash, $email, $name);
 		if (!$result) {
-			$this->view('error_registry');
+			$this->view('error_registry_view', null);
 		}
 		else {
 			$data['reg_success'] = true;
