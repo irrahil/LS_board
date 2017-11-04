@@ -17,6 +17,7 @@ class board_ctrl extends CI_Controller {
 		
 		if ($data == NULL) 
 			$data = array();
+		$data['app_group_mode'] = $this->config->item('app_group_mode');
 		$params = array();
 		if ($this->session->user_name)
 			$data['username'] = $this->session->user_name;
@@ -35,10 +36,24 @@ class board_ctrl extends CI_Controller {
 			$data['user_list'] = $this->user_model->get_user_info();
 		}
 		
+		if ($page == 'new_status_view') {
+			if ($this->config->item('app_group_mode') ) {
+				header("Location: /index.php");
+				exit;
+			}
+		}
 		if ($page == 'status_list_view') {
+			if ($this->config->item('app_group_mode') ) {
+				header("Location: /index.php");
+				exit;
+			}
 			$data['status_list'] = $this->board_model->work_status('get');
 		}
 		if ($page == 'edit_status_view') {
+			if ($this->config->item('app_group_mode') ) {
+				header("Location: /index.php");
+				exit;
+			}
 			$params['status_id'] = $this->input->get('status_id');
 			$data['status_info'] = $this->board_model->work_status('get', $params);
 		}
@@ -219,6 +234,10 @@ class board_ctrl extends CI_Controller {
 	
 	
 	public function add_new_status() {
+		if ($this->config->item('app_group_mode') ) {
+			header("Location: /index.php");
+			exit;
+		}
 		$params = array();
 		$params['status_name'] = htmlspecialchars($this->input->post('statusname'), ENT_QUOTES);
 		$params['status_color'] = $this->input->post('statuscolor');
@@ -227,6 +246,10 @@ class board_ctrl extends CI_Controller {
 	}
 
 	public function edit_status() {
+		if ($this->config->item('app_group_mode') ) {
+			header("Location: /index.php");
+			exit;
+		}
 		$params = array();
 		$params['status_id'] = $this->input->post('statusid');
 		$params['status_name'] = htmlspecialchars($this->input->post('statusname'), ENT_QUOTES);
@@ -236,10 +259,14 @@ class board_ctrl extends CI_Controller {
 	}
 
 	public function delete_status() {
-			$params = array();
-			$params['status_id'] = $this->input->get('status_id');
-			$this->board_model->work_status('delete', $params);
-			header("Location: /index.php/statuses");
+		if ($this->config->item('app_group_mode') ) {
+			header("Location: /index.php");
+			exit;
+		}
+		$params = array();
+		$params['status_id'] = $this->input->get('status_id');
+		$this->board_model->work_status('delete', $params);
+		header("Location: /index.php/statuses");
 	}
 	
 	

@@ -17,9 +17,13 @@
 	<div class="menu_button">
 		<a href=/index.php/tasks>Задачи</a>
 	</div>
-	<div class="menu_button">
-		<a href=/index.php/statuses>Статусы задач</a>
-	</div>
+	<?php 
+		if (!$app_group_mode )
+		echo '
+			<div class="menu_button">
+				<a href=/index.php/statuses>Статусы задач</a>
+			</div>
+	'; ?>
 	<div class="menu_button">
 		<a href=/index.php/schedules>Расписание</a>
 	</div>

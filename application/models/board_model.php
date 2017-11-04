@@ -423,28 +423,6 @@ class board_model extends CI_Model {
 	
 	
 	
-	public function board($date_begin, $date_end, $user_id = null) {
-		// $this->db->select('board.rec_id, 
-						   // board.datetime_begin, 
-						   // board.datetime_end,
-						   // board.user_id, 
-						   // tasks.task_id, 
-						   // tasks.task_name, 
-						   // statuses.status_name,
-						   // statuses.status_color, 
-						   // task_category.category_name
-						   // ');
-		// #$this->db->from('board');
-		// $this->db->where('datetime_begin >', $date_begin);
-		// $this->db->where('datetime_end <', $date_end);
-		// if ($iser_id != null)
-			// $this->db->where('user_id', $user_id);
-		// $this->db->join('tasks', 'board.task_id = tasks.task_id', 'left');
-		// $this->db->join('statuses', 'tasks.task_status = statuses.status_id', 'left');
-		// $this->db->join('task_category', 'tasks.task_category = task_category.category_id', 'left');
-		// $result = $this->db->get('board')->result();
-		// print_r($result);
-	}
 }
 
 ?>

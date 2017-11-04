@@ -15,6 +15,7 @@ class user_ctrl extends CI_Controller {
 		if ($data == NULL) 
 			$data = array();
 		#print_r($data);
+		$data['app_group_mode'] = $this->config->item('app_group_mode');
 		if ($this->session->user_name)
 			$data['username'] = $this->session->user_name;
 		//drawing form
