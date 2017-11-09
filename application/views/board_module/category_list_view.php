@@ -11,10 +11,10 @@
 			<?php echo 'Наименование: ' ,$category['category_name']; ?>
 		</div>
 		<div class="list_ctrl">
-			<?php echo '<a href=/index.php/cat?category_id=', $category['category_id'] , '>Edit</a>'; ?>
+			<?php echo '<a href=/cat?category_id=', $category['category_id'] , '>Edit</a>'; ?>
 		</div>
 		<div class="list_ctrl">
-			<?php echo '<a href=/index.php/cmd_delete_category?category_id=', $category['category_id'] , '>Delete</a>'; ?>
+			<?php echo '<a href=/cmd_delete_category?category_id=', $category['category_id'] , '>Delete</a>'; ?>
 		</div>
 	</div>
 

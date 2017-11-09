@@ -9,13 +9,13 @@
 	</div>
 	
 	<div class="menu_button">
-		<a href=/index.php/board>На главную</a>
+		<a href=/board>На главную</a>
 	</div>
 	<div class="menu_button">
-		<a href=/index.php/categories>Категории задач</a>
+		<a href=/categories>Категории задач</a>
 	</div>
 	<div class="menu_button">
-		<a href=/index.php/tasks>Задачи</a>
+		<a href=/tasks>Задачи</a>
 	</div>
 	<?php 
 		if (!$app_group_mode )
@@ -25,15 +25,15 @@
 			</div>
 	'; ?>
 	<div class="menu_button">
-		<a href=/index.php/schedules>Расписание</a>
+		<a href=/schedules>Расписание</a>
 	</div>
 	<div class="menu_button">
-		<a href=/index.php/new_board_entry>Добавить новую запись на доску</a>
+		<a href=/new_board_entry>Добавить новую запись на доску</a>
 	</div>
 	<div class="menu_button">
-		<a href=/index.php/user>Профиль</a>
+		<a href=/user>Профиль</a>
 	</div>
 	<div class="menu_button">
-		<a href=/index.php/cmd_exit>Выход</a>
+		<a href=/cmd_exit>Выход</a>
 	</div>
 </div>

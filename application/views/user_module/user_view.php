@@ -63,7 +63,7 @@
 	<div class="user_form_str">
 	
 		<div class="user_form_button">
-			<a href=/index.php/board>Назад</a>	
+			<a href=/board>Назад</a>	
 		</div>
 	
 	</div>

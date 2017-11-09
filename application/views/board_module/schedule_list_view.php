@@ -23,10 +23,10 @@
 			<?php echo 'Комментарии: ' ,$record['comments']; ?>
 		</div>
 		<div class="list_ctrl">
-			<?php echo '<a href=/index.php/user_entry?rec_id=', $record['rec_id'] , '>Edit</a>'; ?>
+			<?php echo '<a href=/user_entry?rec_id=', $record['rec_id'] , '>Edit</a>'; ?>
 		</div>
 		<div class="list_ctrl">
-			<?php echo '<a href=/index.php/cmd_delete_schedule?rec_id=', $record['rec_id'] , '>Delete</a>'; ?>
+			<?php echo '<a href=/cmd_delete_schedule?rec_id=', $record['rec_id'] , '>Delete</a>'; ?>
 		</div>
 	</div>
 

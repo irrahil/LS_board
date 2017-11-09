@@ -30,7 +30,7 @@
 				<input type=submit value="Войти">
 			</div>
 			<div class="form_str">
-				<a href="/index.php/registry">Зарегистрироваться</a>
+				<a href="/registry">Зарегистрироваться</a>
 			</div>
 		</form>
 	</div>

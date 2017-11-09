@@ -22,7 +22,7 @@ class user_ctrl extends CI_Controller {
         $this->load->view('templates/header_view', $data);
 		if ($this->session->user_id != false) {
 			if ($page == 'login_view')
-				header("Location: /index.php/board");
+				header("Location: /board");
 			$this->load->view('templates/menu_view', $data);
 		}
         $this->load->view('user_module/'.$page, $data);
@@ -72,7 +72,7 @@ class user_ctrl extends CI_Controller {
 			$user_id =  $this->user_model->get_user_id($username);
 			$this->session->set_userdata('user_id', $user_id);
 			$this->session->set_userdata('user_name', $this->user_model->get_user_info($user_id)[0]['user_name'] );
-			header("Location: /index.php/board");
+			header("Location: /board");
 		}
 		else {
 			$data['login_failed'] = true;
@@ -147,7 +147,7 @@ class user_ctrl extends CI_Controller {
 	
 	public function exit_from_app() {
 		$this->session->sess_destroy();
-		header("Location: /index.php");
+		header("Location: /");
 	}
 	
 }

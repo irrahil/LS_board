@@ -1,3 +1,3 @@
 <?php
-	$config['app_group_mode'] = true;
+	$config['app_group_mode'] = false;
 ?>

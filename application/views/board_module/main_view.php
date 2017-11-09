@@ -28,10 +28,10 @@
 								#, '</font>'; ?>
 				</td>
 				<td>
-					<?php echo '<a href="/index.php/board_entry?rec_id=', $board_entry['rec_id'], '">Edit</a>'; ?>
+					<?php echo '<a href="/board_entry?rec_id=', $board_entry['rec_id'], '">Edit</a>'; ?>
 				</td>
 				<td>
-					<?php echo '<a href="/index.php/cmd_delete_entry?rec_id=', $board_entry['rec_id'], '">Delete</a>'; ?>
+					<?php echo '<a href="/cmd_delete_entry?rec_id=', $board_entry['rec_id'], '">Delete</a>'; ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

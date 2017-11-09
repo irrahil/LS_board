@@ -20,10 +20,10 @@
 			<?php echo 'Приоритет: ' ,$task['task_priority']; ?>
 		</div>
 		<div class="list_ctrl">
-			<?php echo '<a href=/index.php/task?task_id=', $task['task_id'] , '>Edit</a>'; ?>
+			<?php echo '<a href=/task?task_id=', $task['task_id'] , '>Edit</a>'; ?>
 		</div>
 		<div class="list_ctrl">
-			<?php echo '<a href=/index.php/cmd_delete_task?task_id=', $task['task_id'] , '>Delete</a>'; ?>
+			<?php echo '<a href=/cmd_delete_task?task_id=', $task['task_id'] , '>Delete</a>'; ?>
 		</div>
 	</div>
 

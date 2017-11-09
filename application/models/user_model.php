@@ -108,7 +108,6 @@ class user_model extends CI_Model {
 			array_push($data, $obj);
 		}
 		return $data;
-		return null;
 	}
 }
 

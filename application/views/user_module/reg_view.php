@@ -58,7 +58,7 @@
 		<input type=submit value="Зарегистрироваться">
 	</div>
 	<div class="form_str">
-		<a href=/index.php>К окну входа</a>
+		<a href=/>К окну входа</a>
 	</div>
 
 </div>

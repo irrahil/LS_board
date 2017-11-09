@@ -26,7 +26,7 @@ class board_ctrl extends CI_Controller {
 		if ($this->session->user_id != false) 
 			$this->load->view('templates/menu_view', $data);
 		else if (SECURITY) {
-			header("Location: /index.php");
+			header("Location: /");
 			exit;
 		}
 		if ($page == 'new_task_view') {
@@ -38,20 +38,20 @@ class board_ctrl extends CI_Controller {
 		
 		if ($page == 'new_status_view') {
 			if ($this->config->item('app_group_mode') ) {
-				header("Location: /index.php");
+				header("Location: /");
 				exit;
 			}
 		}
 		if ($page == 'status_list_view') {
 			if ($this->config->item('app_group_mode') ) {
-				header("Location: /index.php");
+				header("Location: /");
 				exit;
 			}
 			$data['status_list'] = $this->board_model->work_status('get');
 		}
 		if ($page == 'edit_status_view') {
 			if ($this->config->item('app_group_mode') ) {
-				header("Location: /index.php");
+				header("Location: /");
 				exit;
 			}
 			$params['status_id'] = $this->input->get('status_id');
@@ -142,7 +142,7 @@ class board_ctrl extends CI_Controller {
 		$params['task_category'] 	= $this->input->post('taskcategory');
 		$params['task_priority']	= $this->input->post('taskpriority');
 		$this->board_model->work_task('new', $params);
-		header("Location: /index.php/tasks");
+		header("Location: /tasks");
 	}
 	
 	public function edit_task() {
@@ -155,13 +155,13 @@ class board_ctrl extends CI_Controller {
 		if ($this->input->post('task_status') !== 0)
 			$params['task_status']		= $this->input->post('task_status');
 		$this->board_model->work_task('edit', $params);
-		header("Location: /index.php/tasks");
+		header("Location: /tasks");
 	}
 	
 	public function delete_task() {
 		$params['task_id'] = $this->input->get('task_id');
 		$this->board_model->work_task('delete', $params);
-		header("Location: /index.php/tasks");
+		header("Location: /tasks");
 	}
 	
 	
@@ -174,7 +174,7 @@ class board_ctrl extends CI_Controller {
 		$params['user_id'] = $this->session->user_id;
 		$cmd = 'new';
 		$this->board_model->work_category($cmd, $params);
-		header("Location: /index.php/categories");
+		header("Location: /categories");
 	}
 	
 	public function edit_category() {
@@ -185,13 +185,13 @@ class board_ctrl extends CI_Controller {
 			$params['category_access'] = $this->input->post('categoryaccess');
 		$params['user_id'] = $this->session->user_id;
 		$this->board_model->work_category('edit', $params);
-		header("Location: /index.php/categories");
+		header("Location: /categories");
 	}
 	
 	public function delete_category() {
 		$params['category_id'] = $this->input->get('category_id');
 		$this->board_model->work_category('delete', $params);
-		header("Location: /index.php/categories");
+		header("Location: /categories");
 	}
 	
 	
@@ -205,7 +205,7 @@ class board_ctrl extends CI_Controller {
 		$params['comments']	= htmlspecialchars($this->input->post('comments'), ENT_QUOTES);
 		#print_r($params);
 		$this->board_model->work_schedules('new', $params);
-		header("Location: /index.php/schedules");
+		header("Location: /schedules");
 	}
 	
 	public function edit_schedule() {
@@ -221,33 +221,33 @@ class board_ctrl extends CI_Controller {
 		$params['rec_id'] = $this->input->post('rec_id');
 		#print_r($params);
 		$this->board_model->work_schedules('edit', $params);
-		header("Location: /index.php/schedules");
+		header("Location: /schedules");
 	}
 
 	public function delete_schedule() {
 		$params['user_id'] = $this->session->user_id;
 		$params['rec_id'] = $this->input->get('rec_id');
 		$this->board_model->work_schedules('delete', $params);
-		header("Location: /index.php/schedules");
+		header("Location: /schedules");
 	}
 	
 	
 	
 	public function add_new_status() {
 		if ($this->config->item('app_group_mode') ) {
-			header("Location: /index.php");
+			header("Location: /");
 			exit;
 		}
 		$params = array();
 		$params['status_name'] = htmlspecialchars($this->input->post('statusname'), ENT_QUOTES);
 		$params['status_color'] = $this->input->post('statuscolor');
 		$this->board_model->work_status('new', $params);
-		header("Location: /index.php/statuses");
+		header("Location: /statuses");
 	}
 
 	public function edit_status() {
 		if ($this->config->item('app_group_mode') ) {
-			header("Location: /index.php");
+			header("Location: /");
 			exit;
 		}
 		$params = array();
@@ -255,18 +255,18 @@ class board_ctrl extends CI_Controller {
 		$params['status_name'] = htmlspecialchars($this->input->post('statusname'), ENT_QUOTES);
 		$params['status_color'] = $this->input->post('statuscolor');
 		$this->board_model->work_status('edit', $params);
-		header("Location: /index.php/statuses");
+		header("Location: /statuses");
 	}
 
 	public function delete_status() {
 		if ($this->config->item('app_group_mode') ) {
-			header("Location: /index.php");
+			header("Location: /");
 			exit;
 		}
 		$params = array();
 		$params['status_id'] = $this->input->get('status_id');
 		$this->board_model->work_status('delete', $params);
-		header("Location: /index.php/statuses");
+		header("Location: /statuses");
 	}
 	
 	
@@ -277,7 +277,7 @@ class board_ctrl extends CI_Controller {
 		$params['task_id']	= $this->input->post('task_id');
 		$params['status_id'] = $this->input->post('status_id');
 		$this->board_model->work_board_entry('new', $params);
-		header("Location: /index.php/board");
+		header("Location: /board");
 	}
 	
 	public function edit_board_entry() {
@@ -287,7 +287,7 @@ class board_ctrl extends CI_Controller {
 		$params['status_id'] = $this->input->post('status_id');
 		$params['rec_id']	= $this->input->post('rec_id');
 		$this->board_model->work_board_entry('edit', $params);
-		header("Location: /index.php/board");
+		header("Location: /board");
 	}
 	
 	public function delete_board_entry() {
@@ -295,7 +295,7 @@ class board_ctrl extends CI_Controller {
 		$params['user_id'] = $this->session->user_id;
 		#print_r($params);
 		$this->board_model->work_board_entry('delete', $params);
-			header("Location: /index.php/board");
+			header("Location: /board");
 	}
 }
 
