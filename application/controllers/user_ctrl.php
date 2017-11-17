@@ -44,13 +44,12 @@ class user_ctrl extends CI_Controller {
 		$email = $this->input->post('email');
 		$name = $this->input->post('name');
 		$verify_code = $this->input->post('verify_code');
-		$passhash = hash('sha256', $userpass + $username, false);
 		#print($username);
 		if ($verify_code !== VERIFY_CODE) {
 			$this->view('error_registry_view');
 			return;
 		}
-		$result = $this->user_model->reg_user($username, $passhash, $email, $name);
+		$result = $this->user_model->reg_user($username, $userpass, $email, $name);
 		if (!$result) {
 			$this->view('error_registry_view', null);
 		}
@@ -67,8 +66,7 @@ class user_ctrl extends CI_Controller {
 	public function login() {
 		$username = $this->input->post('username');
 		$userpass = $this->input->post('userpass');
-		$passhash = hash('sha256', $userpass + $username, false);
-		if ($this->user_model->check_user($username, $passhash) ) {
+		if ($this->user_model->check_user($username, $userpass) ) {
 			$user_id =  $this->user_model->get_user_id($username);
 			$this->session->set_userdata('user_id', $user_id);
 			$this->session->set_userdata('user_name', $this->user_model->get_user_info($user_id)[0]['user_name'] );
@@ -105,7 +103,7 @@ class user_ctrl extends CI_Controller {
 		else
 			$userlogin = null;
 		if ($this->input->post('userpass_edit') )
-			$userpass = hash('sha256', $this->input->post('userpass') );
+			$userpass = $this->input->post('userpass');
 		else
 			$userpass = null;
 		if ($this->input->post('email_edit') )

@@ -107,7 +107,7 @@ class board_ctrl extends CI_Controller {
 		
 		if ($page == 'main_view') {
 			$params = array();
-			if ($this->input->cookie('board_show_all_days') == null) {
+			if ($this->input->cookie('board_show_all_days') != null) {
 				$d = date_create('now', new DateTimeZone('Europe/Moscow') );
 				$d->modify("-3 day");
 				$params['day_begin'] = $d->format("Y-m-d");
@@ -171,6 +171,10 @@ class board_ctrl extends CI_Controller {
 		$params['category_name'] = htmlspecialchars($this->input->post('categoryname'), ENT_QUOTES);
 		if ($this->input->post('categoryaccess') != NULL )
 			$params['category_access'] = $this->input->post('categoryaccess');
+		if ($this->config->item('app_group_mode') ) {
+			if ($this->input->post('group_access') != NULL)
+				$params['group_access'] = $this->input->post('group_access');
+		}
 		$params['user_id'] = $this->session->user_id;
 		$cmd = 'new';
 		$this->board_model->work_category($cmd, $params);
@@ -183,6 +187,10 @@ class board_ctrl extends CI_Controller {
 		$params['category_id'] = $this->input->post('category_id');
 		if ($this->input->post('categoryaccess') != NULL )
 			$params['category_access'] = $this->input->post('categoryaccess');
+		if ($this->config->item('app_group_mode') ) {
+			if ($this->input->post('group_access') != NULL)
+				$params['group_access'] = $this->input->post('group_access');
+		}
 		$params['user_id'] = $this->session->user_id;
 		$this->board_model->work_category('edit', $params);
 		header("Location: /categories");

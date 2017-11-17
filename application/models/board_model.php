@@ -89,6 +89,7 @@ class board_model extends CI_Model {
 		switch ($cmd) {
 			case 'new': {
 				$this->db->set('category_name', base64_encode($params['category_name']) );
+				$this->db->set('owner_id', $params['user_id'] );
 				$this->db->insert('task_category');
 				$this->db->where('category_name', base64_encode($params['category_name']) );
 				$this->db->select('category_id');
@@ -97,14 +98,22 @@ class board_model extends CI_Model {
 					foreach($params['category_access'] as $access_user) {
 						if ($access_user == $params['user_id'] )
 							continue;
-						$this->db->set('user_id', $access_user);
+						$this->db->set('access_id', $access_user);
 						$this->db->set('category_id', $res[0]->category_id);
+						$this->db->set('is_group', false);
 						$this->db->insert('user_access');
 					}
 				}
-				$this->db->set('user_id', $params['user_id']);
-				$this->db->set('category_id', $res[0]->category_id);
-				$this->db->insert('user_access');
+				if ($this->config->item('app_group_mode') ) {
+					if (isset($params['group_access'] ) ) {
+						foreach($params['group_access'] as $access_group) {
+							$this->db->set('access_id', $access_group);
+							$this->db->set('category_id', $res[0]->category_id);
+							$this->db->set('is_group', true);
+							$this->db->insert('user_access');
+						}
+					}
+				}
 				break;
 			}
 			
@@ -116,52 +125,87 @@ class board_model extends CI_Model {
 				if (isset($params['category_access'] ) ) {
 					//Очищаем таблицу доступа перед перезаписью
 					$this->db->where('category_id', $params['category_id']);
+					$this->db->where('is_group', false);
 					$this->db->delete('user_access');
 					//Перезаписываем таблицу доступа
 					foreach($params['category_access'] as $access_user) {
 						if ($access_user == $params['user_id'] )
 							continue;
-						$this->db->set('user_id', $access_user);
-						$this->db->set('category_id', $params['category_id']);
+						$this->db->set('access_id', $access_user);
+						$this->db->set('category_id', $res[0]->category_id);
+						$this->db->set('is_group', false);
 						$this->db->insert('user_access');
 					}
 				}
-				$this->db->set('user_id', $params['user_id']);
-				$this->db->set('category_id', $params['category_id']);
-				$this->db->insert('user_access');
+				
+				if ($this->config->item('app_group_mode') ) {
+					$this->db->where('category_id', $params['category_id']);
+					$this->db->where('is_group', true);
+					$this->db->delete('user_access');
+					if (isset($params['group_access'] ) ) {
+						foreach($params['group_access'] as $access_group) {
+							$this->db->set('access_id', $access_group);
+							$this->db->set('category_id', $res[0]->category_id);
+							$this->db->set('is_group', true);
+							$this->db->insert('user_access');
+						}
+					}
+				}
 				break;
 			}
 			
 			
 			case 'delete': {
 				$this->db->where('category_id', $params['category_id']);
+				$this->db->delete('user_access');
+				$this->db->where('category_id', $params['category_id']);
 				$this->db->delete('task_category');
+				
 				break;
 			}
 			
 			case 'get': {
-				$category_list = true;
-				if (isset($params['category_id']) ) {
-					$check = $this->db->get_where('user_access', array('user_id' => $params['user_id'], 'category_id' => $params['category_id'] ) )->result();
-					if (count($check) == 0)
-						return null;
-					$this->db->where('task_category.category_id', $params['category_id']);
+				if (isset($params['category_id']) )
 					$category_list = false;
-				}
+				else
+					$category_list = true;
+				
+				//SELECT
+				$this->db->select('task_category.category_id, task_category.category_name');
+				
+				//Вариант отбора по конкретной категории
+				
+				//JOIN
+				$this->db->join('user_access', 'user_access.category_id = task_category.category_id', 'left');
+					
+				
+				//WHERE
+				if (!$category_list)
+					$this->db->where('task_category.category_id', $params['category_id']);
 				if (isset($params['category_name']) )
 					$this->db->where('task_category.category_name', base64_encode($params['category_name']) );
+				
 				if (isset($params['user_id'] ) ) {
-					$this->db->select(
-										'
-											task_category.category_id,
-											task_category.category_name
-										');
-					$this->db->join('user_access AS private', 'private.category_id = task_category.category_id', 'left');
-					if (!$category_list) {	
-						$this->db->select('private.user_id');	
-					} else
-						$this->db->where('private.user_id', $params['user_id'] );
+					if ($this->config->item('app_group_mode') ) {
+						$this->db->	group_start()
+										->where('user_access.access_id', $params['user_id'] )
+										->where('user_access.is_group', false)
+									->group_end()
+									->or_group_start()
+										->where('user_access.is_group', true)
+										->where('roles.user_id', $params['user_id'])
+								->group_end();
+						$this->db->join('roles', 'roles.group_id = user_access.access_id AND user_access.is_group = 1', 'left');
+					} else {
+						$this->db->where('user_access.access_id', $params['user_id']);
+						$this->db->where('user_access.is_group', false);
+					}
+					$this->db->or_group_start()
+								->where('task_category.owner_id', $params['user_id'])
+							 ->group_end();
 				}
+				
+				
 				$res = $this->db->get('task_category')->result();
 				$data = array();
 				foreach ($res as $res_str) {
@@ -169,10 +213,33 @@ class board_model extends CI_Model {
 									'category_id' => $res_str->category_id,
 									'category_name' => base64_decode($res_str->category_name)
 								);
-					if (!$category_list)
-						$obj['user_access']	= $res_str->user_id;
+					
 					array_push($data, $obj);
 				}
+				if (!$category_list) {
+					$this->db->select('user_access.access_id');
+					$this->db->where('user_access.category_id', $params['category_id']);
+					$this->db->where('user_access.is_group', false);
+					$res = $this->db->get('user_access')->result();
+					$users = array();
+					foreach ($res as $user_str) {
+						$obj = array('user_id' => $user_str->access_id);
+						array_push($users, $obj);
+					}
+					$data['user_access'] = $users;
+					
+					$this->db->select('user_access.access_id');
+					$this->db->where('user_access.category_id', $params['category_id']);
+					$this->db->where('user_access.is_group', true);
+					$res = $this->db->get('user_access')->result();
+					$groups = array();
+					foreach ($res as $user_str) {
+						$obj = array('group_id' => $user_str->access_id);
+						array_push($groups, $obj);
+					}
+					$data['group_access'] = $groups;
+				}
+				print_r($data);
 				return $data;
 			}
 			
@@ -342,28 +409,7 @@ class board_model extends CI_Model {
 			}
 			
 			case 'get': {
-				//Получение уникальных записей расписания в заданный период
-				// if (isset($params['day_begin'] ) AND isset($params['day_end']) ) {
-					// $this->db->where('schedule_date >=', $params['day_begin']);
-					// $this->db->where('schedule_date <=', $params['day_end']);
-					// $this->db->select('schedule_date');
-					// $this->db->distinct();
-					// $res = $this->db->get('schedules')->result();
-					// $data = array();
-					// foreach ($res as $res_str) {
-						// $data[] = $res_str->schedule_date;
-					// }
-					// return $data;
-				// }
-				if (isset($params['rec_id']) )
-					$this->db->where('board.rec_id', $params['rec_id']);
-				if (isset($params['user_id'] ) )
-					$this->db->where('user_access.user_id', $params['user_id']);
-				
-				if (isset($params['date_begin'] ) )
-					$this->db->where('schedules.schedule_time_begin >= ', $params['date_begin']);
-				if (isset($params['date_end'] ) )
-					$this->db->where('schedules.schedule_time_end <= ', $params['date_end']);
+				//SELECT
 				$this->db->select('
 									board.rec_id,
 									board.user_id,
@@ -379,20 +425,56 @@ class board_model extends CI_Model {
 									users.user_name,
 									task_category.category_name
 								  ');
+				
+				
+				//JOIN
 				$this->db->join('tasks', 'tasks.task_id = board.task_id', 'left');
+				$this->db->join('task_category', 'task_category.category_id = tasks.task_category', 'left');
 				$this->db->join('statuses', 'statuses.status_id = board.status_id' );
-				$this->db->join('task_category', 'task_category.category_id = tasks.task_category');
-				$this->db->join('user_access', 'task_category.category_id = user_access.category_id');
 				$this->db->join('users', 'users.user_id = board.user_id');
 				$this->db->join('schedules', 'schedules.rec_id = board.schedule_id');
-				#$this->db->where('user_access.user_id = board.user_id');
+				
+				//WHERE
+				if (isset($params['rec_id']) )
+					$this->db->where('board.rec_id', $params['rec_id']);
+				
+				if (isset($params['user_id'] ) ) {
+					$this->db->join('user_access', 'user_access.category_id = task_category.category_id', 'left');
+					if ($this->config->item('app_group_mode') ) {
+						$this->db->	group_start()
+										->where('user_access.access_id', $params['user_id'] )
+										->where('user_access.is_group', false)
+									->group_end()
+									->or_group_start()
+										->where('user_access.is_group', true)
+										->where('roles.user_id', $params['user_id'])
+								->group_end();
+						$this->db->join('roles', 'roles.group_id = user_access.access_id AND user_access.is_group = 1', 'left');
+					} else {
+						$this->db->where('user_access.access_id', $params['user_id']);
+						$this->db->where('user_access.is_group', false);
+					}
+					$this->db->or_group_start()
+								->where('task_category.owner_id', $params['user_id'])
+							 ->group_end();
+				}
+					
+				if (isset($params['date_begin'] ) )
+					$this->db->where('schedules.schedule_time_begin >= ', $params['date_begin']);
+				if (isset($params['date_end'] ) )
+					$this->db->where('schedules.schedule_time_end <= ', $params['date_end']);
 				if (isset($params['day_begin'] ) AND isset($params['day_end']) ) {
 					$this->db->where('schedule_date >=', $params['day_begin']);
 					$this->db->where('schedule_date <=', $params['day_end']);
 				}
+				
+				//ORDER BY
 				$this->db->order_by('schedules.schedule_date', 'ASC');
 				$this->db->order_by('board.user_id', 'ASC');
 				$this->db->order_by('board.rec_id', 'ASC');
+				
+				//FROM
+				#print_r($this->db->get_compiled_select('board') );
 				$res = $this->db->get('board')->result();
 				$data = array();
 				foreach ($res as $res_str) {
