@@ -58,7 +58,8 @@ class board_model extends CI_Model {
 				$this->db->join('statuses', 'tasks.task_status = statuses.status_id', 'left');
 				$this->db->join('task_category', 'tasks.task_category = task_category.category_id', 'left');
 				$this->db->join('user_access', 'user_access.category_id = tasks.task_category', 'left');
-				$this->db->where('user_access.user_id', $params['user_id']);
+				if (!isset($params['admin']) )
+					$this->db->where('user_access.user_id', $params['user_id']);
 				$this->db->order_by('tasks.task_priority');
 				$this->db->order_by('task_category.category_id');
 				$res = $this->db->get('tasks')->result();

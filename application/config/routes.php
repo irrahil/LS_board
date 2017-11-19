@@ -97,6 +97,18 @@ $route['categories']			= 'board_ctrl/view/category_list_view';
 $route['statuses']				= 'board_ctrl/view/status_list_view';
 $route['schedules']				= 'board_ctrl/view/schedule_list_view';
 
+//Отображение страниц admin_ctrl
+$route['users']					= 'admin_ctrl/view/users_list_view';
+$route['groups']				= 'admin_ctrl/view/groups_list_view';
+$route['new_user']				= 'admin_ctrl/view/new_user_view';
+$route['edit_user']				= 'admin_ctrl/view/edit_user_view';
+$route['new_group']				= 'admin_ctrl/view/new_group_view';
+$route['edit_group']			= 'admin_ctrl/view/edit_group_view';
+$route['admin']					= 'admin_ctrl/view/admin_panel_view';
+$route['admin/statuses']		= 'admin_ctrl/view/statuses';
+$route['admin/status']			= 'admin_ctrl/view/status';
+$route['admin/new_status']		= '/admin_ctrl/view/new_status';
+
 $route['default_controller'] = 'user_ctrl/view';
 
 $route['(:any)'] = 'user_ctrl/view/login_view';

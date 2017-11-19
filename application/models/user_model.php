@@ -98,9 +98,14 @@ class user_model extends CI_Model {
 	
 	
 	//Получение данных о пользователе
-	public function get_user_info($user_id = null) {
+	public function get_user_info($user_id = null, $last = false) {
 		if ($user_id != null)
 			$this->db->where('user_id', $user_id);
+		if ($last) {
+			$this->db->order_by('user_id', 'DESC');
+		}
+		else
+			$this->db->order_by('user_id', 'ASC');
 		$res = $this->db->get('users')->result();
 		$data = array();
 		foreach ($res as $res_str) {

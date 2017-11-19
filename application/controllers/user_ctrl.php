@@ -68,8 +68,11 @@ class user_ctrl extends CI_Controller {
 		$userpass = $this->input->post('userpass');
 		if ($this->user_model->check_user($username, $userpass) ) {
 			$user_id =  $this->user_model->get_user_id($username);
+			$user_info = $this->user_model->get_user_info($user_id)[0];
 			$this->session->set_userdata('user_id', $user_id);
-			$this->session->set_userdata('user_name', $this->user_model->get_user_info($user_id)[0]['user_name'] );
+			$this->session->set_userdata('user_name', $user_info['user_name'] );
+			if ($this->config->item('app_group_mode') )
+				$this->session->set_userdata('admin', $user_info['is_admin']);
 			header("Location: /board");
 		}
 		else {

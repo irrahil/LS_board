@@ -4,6 +4,8 @@ class admin_model extends CI_Model {
 	
 	public function __construct() {
 		$this->load->database();
+		$this->load->model('user_model');
+		$this->load->model('board_model');
 	}
 	
 	
@@ -149,16 +151,16 @@ class admin_model extends CI_Model {
 			}
 			
 			case 'get': {
-				
-				//$res = $this->db->get('')->result();
-				//$data = array();
-				//foreach ($res as $res_str) {
-				//	$obj = array(
-				//					
-				//				);
-				//	array_push($data, $obj);
-				//}
-				//return $data;
+				$data = array();
+				$data['users_count'] = count($this->user_model->get_user_info() );
+				$params['group_only'] = true;
+				$params['admin']		= true;
+				$data['groups_count']	= count($this->work_group('get', $params) );
+				$data['last_user']	= $this->user_model->get_user_info(null, true)[0];
+				$data['cat_count']	= count($this->board_model->work_category('get') );
+				$data['task_count']	= count($this->board_model->work_task('get', $params) );
+				$data['schedules_count'] = count($this->board_model->work_schedules('get') );
+				return $data;
 				break;
 			}
 			

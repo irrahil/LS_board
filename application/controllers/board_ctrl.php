@@ -44,21 +44,34 @@ class board_ctrl extends CI_Controller {
 		
 		if ($page == 'new_status_view') {
 			if ($this->config->item('app_group_mode') ) {
-				header("Location: /");
-				exit;
+				if ($this->session->admin)
+					header('Location: /admin/new_status');
+				else {
+					header("Location: /");
+					exit;
+				}
 			}
 		}
 		if ($page == 'status_list_view') {
 			if ($this->config->item('app_group_mode') ) {
-				header("Location: /");
-				exit;
+				if ($this->session->admin)
+					header('Location: /admin/statuses');
+				else {
+					header("Location: /");
+					exit;
+				}
 			}
 			$data['status_list'] = $this->board_model->work_status('get');
 		}
 		if ($page == 'edit_status_view') {
 			if ($this->config->item('app_group_mode') ) {
-				header("Location: /");
-				exit;
+				if ($this->session->admin) {
+					$params['status_id'] = $this->input->get('status_id');
+					header('Location: /admin/status?status_id='.$params['status_id']);
+				} else {
+					header("Location: /");
+					exit;
+				}
 			}
 			$params['status_id'] = $this->input->get('status_id');
 			$data['status_info'] = $this->board_model->work_status('get', $params);

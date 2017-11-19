@@ -45,21 +45,29 @@
 				?>
 			</select>
 		</div>
-	
-		<div class="cat_form_label">
-			Группы пользоваетелй
-		</div>
-		<div class="cat_form_field">
-			<select name="group_access[]" multiple size=10>
-				<?php foreach ($group_list as $group) {
+		<?php 
+			if ($app_group_mode) {
+				echo 
+				'
+					<div class="cat_form_label">
+						Группы пользоваетелй
+					</div>
+					<div class="cat_form_field">
+						<select name="group_access[]" multiple size=10>
+				';
+				foreach ($group_list as $group) {
 					echo '<option value=', $group['group_id'];
 					if (array_search($group['group_id'], array_column($category_info['group_access'], 'group_id') ) !== FALSE );
 						echo ' selected'; 
 					echo '>', $group['group_name'] ,'</option>';
 				}
-				?>
-			</select>
-		</div>
+				echo 
+				'
+						</select>
+					</div>
+				';
+			}
+		?>
 	</div>
 	
 	<div class="cat_form_str">
