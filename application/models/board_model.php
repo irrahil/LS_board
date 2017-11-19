@@ -118,6 +118,12 @@ class board_model extends CI_Model {
 			}
 			
 			case 'edit': {
+				$this->db->select('owner_id');
+				$this->db->where('category_id', $params['category_id']);
+				$this->db->where('owner_id', $params['user_id'] );
+				$res = $this->db->get('task_category')->result();
+				if (empty($res) )
+					break;
 				$this->db->set('category_name', base64_encode($params['category_name']) );
 				$this->db->where('category_id', $params['category_id']);
 				$this->db->update('task_category');
@@ -156,6 +162,12 @@ class board_model extends CI_Model {
 			
 			
 			case 'delete': {
+				$this->db->select('owner_id');
+				$this->db->where('category_id', $params['category_id']);
+				$this->db->where('owner_id', $params['user_id'] );
+				$res = $this->db->get('task_category')->result();
+				if (empty($res) )
+					break;
 				$this->db->where('category_id', $params['category_id']);
 				$this->db->delete('user_access');
 				$this->db->where('category_id', $params['category_id']);
@@ -239,7 +251,7 @@ class board_model extends CI_Model {
 					}
 					$data['group_access'] = $groups;
 				}
-				print_r($data);
+				#print_r($data);
 				return $data;
 			}
 			

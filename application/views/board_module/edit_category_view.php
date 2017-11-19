@@ -1,4 +1,8 @@
-<?php #print_r($category_info );
+<?php 
+	#print_r(array_column($category_info['user_access'], 'user_id')); echo '<br>';
+	#print_r($user_list[0]['user_id']);
+	#if (array_search(34, array_column($category_info['user_access'], 'user_id') ) !== FALSE)
+	#	echo 'check';
 	if (!isset($category_info) )
 		header("Location: /index.php/categories");	
 ?>
@@ -27,11 +31,14 @@
 			Права доступа к категории:
 		</div>
 		
+		<div class="cat_form_label">
+			Пользователи
+		</div>
 		<div class="cat_form_field">
-			<select name="categoryaccess[]" multiple size=10>
+			<select name="user_access[]" multiple size=10>
 				<?php foreach ($user_list as $user) {
 					echo '<option value=', $user['user_id'];
-					if (array_search($user['user_id'], array_column($category_info, 'user_access') ) !== false )
+					if (array_search($user['user_id'], array_column($category_info['user_access'], 'user_id') ) !== FALSE)
 						echo ' selected'; 
 					echo '>', $user['user_name'] ,'</option>';
 				}
@@ -39,6 +46,20 @@
 			</select>
 		</div>
 	
+		<div class="cat_form_label">
+			Группы пользоваетелй
+		</div>
+		<div class="cat_form_field">
+			<select name="group_access[]" multiple size=10>
+				<?php foreach ($group_list as $group) {
+					echo '<option value=', $group['group_id'];
+					if (array_search($group['group_id'], array_column($category_info['group_access'], 'group_id') ) !== FALSE );
+						echo ' selected'; 
+					echo '>', $group['group_name'] ,'</option>';
+				}
+				?>
+			</select>
+		</div>
 	</div>
 	
 	<div class="cat_form_str">

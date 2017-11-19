@@ -1,6 +1,6 @@
 <?php
 
-class board_model extends CI_Model {
+class admin_model extends CI_Model {
 	
 	public function __construct() {
 		$this->load->database();
@@ -28,7 +28,7 @@ class board_model extends CI_Model {
 			}
 			
 			case 'edit': {
-				$this->db->set('group_name', base64_encode($params['group_name']) )
+				$this->db->set('group_name', base64_encode($params['group_name']) );
 				$this->db->where('group_id', $params['group_id']);
 				$this->db->update('groups');
 				if (isset($params['role_users'] ) ) {
@@ -56,18 +56,35 @@ class board_model extends CI_Model {
 			case 'get': {
 				if (isset($params['group_id'] ) )
 					$this->db->where('group_id', $params['group_id'] );
-				$this->db->select('groups.group_id, groups.group_name, roles.user_id, users.user_name');
-				$this->db->join('roles', 'roles.group_id = groups.group_id');
-				$this->db->join('users', 'roles.user_id = users.user_id');
+				if (isset($params['group_only'] ) ) {
+					$this->db->select('groups.group_id, groups.group_name');
+					$this->db->distinct();
+				} else {
+					$this->db->select('groups.group_id, groups.group_name, roles.user_id, users.user_name');
+					$this->db->join('roles', 'roles.group_id = groups.group_id');
+					$this->db->join('users', 'roles.user_id = users.user_id');
+				}
 				$this->db->order_by('groups.group_id', 'ASC');
 				$res = $this->db->get('groups')->result();
 				$data = array();
-				foreach ($res as $res_str) {
-					$obj = array(
-									'group_id' => $res_str->group_id,
-									'group_name' => base64_decode($res_str->group_name)
-								);
-					array_push($data, $obj);
+				if (isset($params['group_only'] ) ) {
+					foreach ($res as $res_str) {
+						$obj = array(
+										'group_id' => $res_str->group_id,
+										'group_name' => $res_str->group_name //base64_decode($res_str->group_name)
+									);
+						array_push($data, $obj);
+					}
+				} else {
+					foreach ($res as $res_str) {
+						$obj = array(
+										'group_id' => $res_str->group_id,
+										'group_name' => $res_str->group_name, //base64_decode($res_str->group_name)
+										'user_id' => $res_str->user_id,
+										'user_name' => base64_decode($res_str->user_name) 
+									);
+						array_push($data, $obj);
+					}
 				}
 				return $data;
 			}

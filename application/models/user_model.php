@@ -111,7 +111,7 @@ class user_model extends CI_Model {
 						'user_email'		=> base64_decode($res_str->user_email)
 						);
 			if ($this->config->item('app_group_mode') ) 
-				$obj['is_admin'] = $isadmin;
+				$obj['is_admin'] = $res_str->is_admin;
 			array_push($data, $obj);
 		}
 		return $data;

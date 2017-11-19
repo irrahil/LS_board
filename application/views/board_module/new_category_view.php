@@ -21,15 +21,32 @@
 			Права доступа к категории:
 		</div>
 		
+		<div class="cat_form_label">
+			Пользователи:
+		</div>
 		<div class="cat_form_field">
-			<select name="categoryaccess[]" multiple size=10>
+			<select name="user_access[]" multiple size=10>
 				<?php foreach ($user_list as $user) {
 					echo '<option value="', $user['user_id'], '">', $user['user_name'] ,'</option>';
 				}
 				?>
 			</select>
 		</div>
-	
+		
+		<div class="cat_form_label">
+			Группы пользователей:
+		</div>
+		<div class="cat_form_field">
+			<select name="group_access[]" multiple size=10>
+				<?php foreach ($group_list as $group) {
+					echo '<option value="', $group['group_id'], '">', $group['group_name'] ,'</option>';
+				}
+				?>
+			</select>
+		</div>
+		
+		
+		
 	</div>
 	
 	<div class="cat_form_str">

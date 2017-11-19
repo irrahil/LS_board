@@ -9,6 +9,8 @@ class board_ctrl extends CI_Controller {
 		$this->load->library('session');
 		$this->load->model('board_model');
 		$this->load->model('user_model');
+		if ($this->config->item('app_group_mode') )
+			$this->load->model('admin_model');
 	}
 	
 	
@@ -34,6 +36,10 @@ class board_ctrl extends CI_Controller {
 		}
 		if ($page == 'new_category_view') {
 			$data['user_list'] = $this->user_model->get_user_info();
+			if ($this->config->item('app_group_mode') ) {
+				$params['group_only'] = true;
+				$data['group_list'] = $this->admin_model->work_group('get', $params);
+			}
 		}
 		
 		if ($page == 'new_status_view') {
@@ -67,6 +73,10 @@ class board_ctrl extends CI_Controller {
 			$params['user_id'] = $this->session->user_id;
 			$data['category_info'] = $this->board_model->work_category('get', $params);
 			$data['user_list'] = $this->user_model->get_user_info();
+			if ($this->config->item('app_group_mode') ) {
+				$params['group_only'] = true;
+				$data['group_list'] = $this->admin_model->work_group('get', $params);
+			}
 		}
 		
 		if ($page == 'task_list_view') {
@@ -170,7 +180,7 @@ class board_ctrl extends CI_Controller {
 		$params = array();
 		$params['category_name'] = htmlspecialchars($this->input->post('categoryname'), ENT_QUOTES);
 		if ($this->input->post('categoryaccess') != NULL )
-			$params['category_access'] = $this->input->post('categoryaccess');
+			$params['category_access'] = $this->input->post('user_access');
 		if ($this->config->item('app_group_mode') ) {
 			if ($this->input->post('group_access') != NULL)
 				$params['group_access'] = $this->input->post('group_access');
@@ -198,6 +208,7 @@ class board_ctrl extends CI_Controller {
 	
 	public function delete_category() {
 		$params['category_id'] = $this->input->get('category_id');
+		$params['user_id'] = $this->session->user_id;
 		$this->board_model->work_category('delete', $params);
 		header("Location: /categories");
 	}
