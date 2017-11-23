@@ -11,7 +11,7 @@
 			Дата:
 		</div>	
 		<div class="cat_form_field">
-			<input type=date name="schedule_date" value="<?php echo $schedule_info[0]['schedule_date']; ?>">
+			<input type=date name="schedule_date" class="date" placeholder="yyyy-mm-dd" value="<?php echo $schedule_info[0]['schedule_date']; ?>">
 		</div>
 	</div>
 	
@@ -20,7 +20,7 @@
 			Время начала:
 		</div>	
 		<div class="cat_form_field">
-			<input type="time" name="schedule_time_begin" value="<?php echo $schedule_info[0]['schedule_time_begin']; ?>">
+			<input type="time" name="schedule_time_begin" class="time" placeholder="hh:mm:ss" value="<?php echo $schedule_info[0]['schedule_time_begin']; ?>">
 		</div>
 	</div>
 	
@@ -29,7 +29,7 @@
 			Время окончания:
 		</div>	
 		<div class="cat_form_field">
-			<input type=time name="schedule_time_end" value="<?php echo $schedule_info[0]['schedule_time_end']; ?>">
+			<input type=time name="schedule_time_end" class="time" placeholder="hh:mm:ss" value="<?php echo $schedule_info[0]['schedule_time_end']; ?>">
 		</div>
 	</div>
 	

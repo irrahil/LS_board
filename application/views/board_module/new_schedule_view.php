@@ -9,7 +9,7 @@
 			Дата:
 		</div>	
 		<div class="cat_form_field">
-			<input type=date name="schedule_date" value="">
+			<input type=date name="schedule_date" class="date" placeholder="yyyy-mm-dd">
 		</div>
 	</div>
 	
@@ -18,7 +18,7 @@
 			Время начала:
 		</div>	
 		<div class="cat_form_field">
-			<input type="time" name="schedule_time_begin">
+			<input type="time" name="schedule_time_begin" class="time" placeholder="hh:mm:ss">
 		</div>
 	</div>
 	
@@ -27,7 +27,7 @@
 			Время окончания:
 		</div>	
 		<div class="cat_form_field">
-			<input type=time name="schedule_time_end" value="">
+			<input type=time name="schedule_time_end" class="time" placeholder="hh:mm:ss">
 		</div>
 	</div>
 	
