@@ -6,6 +6,26 @@ class board_model extends CI_Model {
 		$this->load->database();
 	}
 	
+	private function get_user_conds($params = null) {
+		if ($this->config->item('app_group_mode') ) {
+			$this->db->	group_start()
+							->where('user_access.access_id', $params['user_id'] )
+							->where('user_access.is_group', false)
+						#->group_end()
+						->or_group_start()
+							->where('user_access.is_group', true)
+							->where('roles.user_id', $params['user_id'])
+						->group_end();
+			$this->db->join('roles', 'roles.group_id = user_access.access_id AND user_access.is_group = 1', 'left');
+		} else {
+			$this->db->group_start();
+				$this->db->where('user_access.access_id', $params['user_id']);
+				$this->db->where('user_access.is_group', false);
+			#$this->db->group_end();
+		}
+		$this->db->or_where('task_category.owner_id', $params['user_id'])
+				 ->group_end();
+	}
 	
 	
 	public function work_task($cmd, $params = null) {
@@ -39,14 +59,7 @@ class board_model extends CI_Model {
 			}
 			
 			case 'get': {
-				if (isset($params['task_id']) )
-					$this->db->where('tasks.task_id', $params['task_id']);
-				if (isset($params['category_id'] ) )
-					$this->db->where('category_id', $params['category_id'] );
-				if (isset($params['task_status'] ) )
-					$this->db->where('task_status', $params['task_status'] );
-				if (isset($params['task_priority'] ) )
-					$this->db->where('task_priority', $params['task_priority'] );
+				//SELECT
 				$this->db->select('tasks.task_id, 
 								   tasks.task_name,
 								   statuses.status_id,
@@ -55,14 +68,30 @@ class board_model extends CI_Model {
 								   task_category.category_id, 
 								   task_category.category_name,
 								   statuses.status_color');
+				//JOIN
 				$this->db->join('statuses', 'tasks.task_status = statuses.status_id', 'left');
 				$this->db->join('task_category', 'tasks.task_category = task_category.category_id', 'left');
 				$this->db->join('user_access', 'user_access.category_id = tasks.task_category', 'left');
-				if (!isset($params['admin']) )
-					$this->db->where('user_access.user_id', $params['user_id']);
+				
+				//WHERE
+				if (isset($params['task_id']) )
+					$this->db->where('tasks.task_id', $params['task_id']);
+				if (isset($params['category_id'] ) )
+					$this->db->where('category_id', $params['category_id'] );
+				if (isset($params['task_status'] ) )
+					$this->db->where('task_status', $params['task_status'] );
+				if (isset($params['task_priority'] ) )
+					$this->db->where('task_priority', $params['task_priority'] );
+				if (!isset($params['admin']) ) {
+					$this->get_user_conds($params);
+				}
+				$this->db->distinct();
+				//ORDER BY
 				$this->db->order_by('tasks.task_priority');
 				$this->db->order_by('task_category.category_id');
+				
 				$res = $this->db->get('tasks')->result();
+				#print_r($res);
 				$data = array();
 				foreach ($res as $res_str) {
 					$obj = array(
@@ -199,27 +228,30 @@ class board_model extends CI_Model {
 					$this->db->where('task_category.category_name', base64_encode($params['category_name']) );
 				
 				if (isset($params['user_id'] ) ) {
-					if ($this->config->item('app_group_mode') ) {
-						$this->db->	group_start()
-										->where('user_access.access_id', $params['user_id'] )
-										->where('user_access.is_group', false)
-									->group_end()
-									->or_group_start()
-										->where('user_access.is_group', true)
-										->where('roles.user_id', $params['user_id'])
-								->group_end();
-						$this->db->join('roles', 'roles.group_id = user_access.access_id AND user_access.is_group = 1', 'left');
-					} else {
-						$this->db->where('user_access.access_id', $params['user_id']);
-						$this->db->where('user_access.is_group', false);
-					}
-					$this->db->or_group_start()
-								->where('task_category.owner_id', $params['user_id'])
-							 ->group_end();
+					// if ($this->config->item('app_group_mode') ) {
+						// $this->db->	group_start()
+										// ->where('user_access.access_id', $params['user_id'] )
+										// ->where('user_access.is_group', false)
+									// ->group_end()
+									// ->or_group_start()
+										// ->where('user_access.is_group', true)
+										// ->where('roles.user_id', $params['user_id'])
+								// ->group_end();
+						// $this->db->join('roles', 'roles.group_id = user_access.access_id AND user_access.is_group = 1', 'left');
+					// } else {
+						// $this->db->where('user_access.access_id', $params['user_id']);
+						// $this->db->where('user_access.is_group', false);
+					// }
+					// $this->db->or_group_start()
+								// ->where('task_category.owner_id', $params['user_id'])
+							 // ->group_end();
+					$this->get_user_conds($params);
 				}
+				$this->db->distinct();
 				
 				
 				$res = $this->db->get('task_category')->result();
+				#print_r($res);
 				$data = array();
 				foreach ($res as $res_str) {
 					$obj = array(
@@ -446,30 +478,32 @@ class board_model extends CI_Model {
 				$this->db->join('statuses', 'statuses.status_id = board.status_id' );
 				$this->db->join('users', 'users.user_id = board.user_id');
 				$this->db->join('schedules', 'schedules.rec_id = board.schedule_id');
+				$this->db->join('user_access', 'user_access.category_id = task_category.category_id', 'left');
 				
 				//WHERE
 				if (isset($params['rec_id']) )
 					$this->db->where('board.rec_id', $params['rec_id']);
 				
 				if (isset($params['user_id'] ) ) {
-					$this->db->join('user_access', 'user_access.category_id = task_category.category_id', 'left');
-					if ($this->config->item('app_group_mode') ) {
-						$this->db->	group_start()
-										->where('user_access.access_id', $params['user_id'] )
-										->where('user_access.is_group', false)
-									->group_end()
-									->or_group_start()
-										->where('user_access.is_group', true)
-										->where('roles.user_id', $params['user_id'])
-								->group_end();
-						$this->db->join('roles', 'roles.group_id = user_access.access_id AND user_access.is_group = 1', 'left');
-					} else {
-						$this->db->where('user_access.access_id', $params['user_id']);
-						$this->db->where('user_access.is_group', false);
-					}
-					$this->db->or_group_start()
-								->where('task_category.owner_id', $params['user_id'])
-							 ->group_end();
+					$this->get_user_conds($params);
+					// 
+					// if ($this->config->item('app_group_mode') ) {
+						// $this->db->	group_start()
+										// ->where('user_access.access_id', $params['user_id'] )
+										// ->where('user_access.is_group', false)
+									// ->group_end()
+									// ->or_group_start()
+										// ->where('user_access.is_group', true)
+										// ->where('roles.user_id', $params['user_id'])
+								// ->group_end();
+						// $this->db->join('roles', 'roles.group_id = user_access.access_id AND user_access.is_group = 1', 'left');
+					// } else {
+						// $this->db->where('user_access.access_id', $params['user_id']);
+						// $this->db->where('user_access.is_group', false);
+					// }
+					// $this->db->or_group_start()
+								// ->where('task_category.owner_id', $params['user_id'])
+							 // ->group_end();
 				}
 					
 				if (isset($params['date_begin'] ) )
@@ -485,6 +519,7 @@ class board_model extends CI_Model {
 				$this->db->order_by('schedules.schedule_date', 'ASC');
 				$this->db->order_by('board.user_id', 'ASC');
 				$this->db->order_by('board.rec_id', 'ASC');
+				$this->db->distinct();
 				
 				//FROM
 				#print_r($this->db->get_compiled_select('board') );

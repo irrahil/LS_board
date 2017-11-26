@@ -72,6 +72,14 @@ $route['cmd_delete_status']		= 'board_ctrl/delete_status';
 $route['cmd_new_entry']			= 'board_ctrl/add_board_entry';
 $route['cmd_edit_entry']		= 'board_ctrl/edit_board_entry';
 $route['cmd_delete_entry']		= 'board_ctrl/delete_board_entry';
+
+//Обработчики admin_ctrl
+$route['cmd_new_user']			= 'admin_ctrl/admin_new_user';
+$route['cmd_edit_user']			= 'admin_ctrl/admin_edit_user';
+$route['cmd_delete_user']		= 'admin_ctrl/admin_delete_user';
+$route['cmd_new_group']			= 'admin_ctrl/admin_new_group';
+$route['cmd_edit_group']		= 'admin_ctrl/admin_edit_group';
+$route['cmd_delete_group']		= 'admin_ctrl/admin_delete_group';
  
 //Отображение страниц user_ctrl
 $route['registry'] 		= 'user_ctrl/view/reg_view';

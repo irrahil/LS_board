@@ -27,6 +27,27 @@ class admin_ctrl extends CI_Controller {
 			exit;
 		}
 		
+		if ($page == 'new_user_view') {
+			
+		}
+		if ($page == 'edit_user_view') {
+			$data['user'] = $this->user_model->get_user_info($params['user_id']);
+		}
+		if ($page == 'users_list_view') {
+			$data['users'] = $this->user_model->get_user_info();
+		}
+		
+		if ($page == 'new_group_view') {
+			
+		}
+		if ($page == 'edit_group_view') {
+			$data['user'] = $this->user_model->get_user_info($params['user_id']);
+		}
+		if ($page == 'groups_list_view') {
+			$params['group_only'] = true;
+			$data['groups'] = $this->admin_model->work_group('get', $params);
+		}
+		
 		if ($page == 'new_status') {
 			$module = 'board_module';
 			$page = 'new_status_view';
