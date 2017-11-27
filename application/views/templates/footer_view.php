@@ -25,7 +25,7 @@
 		function check_time() {
 		  var reg_exp = /^\d{2}:\d{2}:\d{2}$/;
 		  var reg_exp2 = /^\d{2}:\d{2}$/;
-			if(reg_exp.test(this.value) || reg_exp2.test(this.value) {
+			if(reg_exp.test(this.value) || reg_exp2.test(this.value) ) {
 				return true;
 			} else {
 				alert("Время следует ввести в формате hh:mm:ss");

@@ -11,7 +11,7 @@
 	<div class="cat_form_header">
 		Элемент справочника "Категории задач"
 	</div>
-	<form method=post action="/index.php/cmd_edit_category">
+	<form method=post action="/cmd_edit_category">
 	<input type=hidden name="category_id" value="<?php echo $category_info[0]['category_id']; ?>">
 	<div class="cat_form_str">
 	

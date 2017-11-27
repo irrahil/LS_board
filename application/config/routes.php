@@ -50,10 +50,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 //Обработчики user_ctrl
-$route['cmd_reg_user'] 	= 'user_ctrl/reg_user';
-$route['cmd_login'] 	= 'user_ctrl/login';
-$route['cmd_edit_user'] = 'user_ctrl/edit_user_info';
-$route['cmd_exit']		= 'user_ctrl/exit_from_app';
+$route['cmd_reg_user'] 			= 'user_ctrl/reg_user';
+$route['cmd_login'] 			= 'user_ctrl/login';
+$route['cmd_edit_profile'] 		= 'user_ctrl/edit_user_info';
+$route['cmd_exit']				= 'user_ctrl/exit_from_app';
 
 
 //Обработчики board_ctrl
@@ -83,7 +83,7 @@ $route['cmd_delete_group']		= 'admin_ctrl/admin_delete_group';
  
 //Отображение страниц user_ctrl
 $route['registry'] 		= 'user_ctrl/view/reg_view';
-$route['user'] 			= 'user_ctrl/get_user_info';
+$route['profile'] 		= 'user_ctrl/get_user_info';
 $route['restore'] 		= 'user_ctrl/view/restore_req_view';
 $route['restoring'] 	= 'user_ctrl/view/restore_view';
 

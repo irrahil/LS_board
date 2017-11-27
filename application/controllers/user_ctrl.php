@@ -18,6 +18,8 @@ class user_ctrl extends CI_Controller {
 		$data['app_group_mode'] = $this->config->item('app_group_mode');
 		if ($this->session->user_name)
 			$data['username'] = $this->session->user_name;
+		if ($this->session->admin)
+			$data['admin']	= true;
 		//drawing form
         $this->load->view('templates/header_view', $data);
 		if ($this->session->user_id != false) {

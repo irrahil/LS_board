@@ -2,7 +2,7 @@
 	<div class="cat_form_header">
 		Элемент справочника "Статусы задач"
 	</div>
-	<form method=post action="/index.php/cmd_edit_status">
+	<form method=post action="/cmd_edit_status">
 	<input type=hidden name="statusid" value="<?php echo $status_info[0]['status_id'];?>">
 	<div class="cat_form_str">
 	

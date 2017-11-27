@@ -18,11 +18,11 @@ class admin_model extends CI_Model {
 				
 				$this->db->where('group_name', base64_encode($params['group_name']) );
 				$this->db->select('group_id');
-				$res = $this->db->get('groups')->result();
+				$group_id = $this->db->get('groups')->result()[0]->group_id;
 				if (isset($params['role_users'] ) ) {
 					foreach($params['role_users'] as $user_id) {
 						$this->db->set('user_id', $user_id);
-						$this->db->set('group_id', $res[0]->group_id);
+						$this->db->set('group_id', $group_id);
 						$this->db->insert('roles');
 					}
 				}
@@ -36,11 +36,11 @@ class admin_model extends CI_Model {
 				if (isset($params['role_users'] ) ) {
 					//Очищаем таблицу доступа перед перезаписью
 					$this->db->where('group_id', $params['group_id']);
-					$this->db->delete('groups');
+					$this->db->delete('roles');
 					//Перезаписываем таблицу доступа
 					foreach($params['role_users'] as $user_id) {
 						$this->db->set('user_id', $user_id);
-						$this->db->set('group_id', $res[0]->group_id);
+						$this->db->set('group_id', $params['group_id']);
 						$this->db->insert('roles');
 					}
 				}
@@ -51,13 +51,14 @@ class admin_model extends CI_Model {
 			
 			case 'delete': {
 				$this->db->where('group_id', $params['group_id']);
+				#print_r($params);
 				$this->db->delete('groups');
 				break;
 			}
 			
 			case 'get': {
 				if (isset($params['group_id'] ) )
-					$this->db->where('group_id', $params['group_id'] );
+					$this->db->where('groups.group_id', $params['group_id'] );
 				if (isset($params['group_only'] ) ) {
 					$this->db->select('groups.group_id, groups.group_name');
 					$this->db->distinct();
@@ -73,7 +74,7 @@ class admin_model extends CI_Model {
 					foreach ($res as $res_str) {
 						$obj = array(
 										'group_id' => $res_str->group_id,
-										'group_name' => $res_str->group_name //base64_decode($res_str->group_name)
+										'group_name' => base64_decode($res_str->group_name)
 									);
 						array_push($data, $obj);
 					}
@@ -81,7 +82,7 @@ class admin_model extends CI_Model {
 					foreach ($res as $res_str) {
 						$obj = array(
 										'group_id' => $res_str->group_id,
-										'group_name' => $res_str->group_name, //base64_decode($res_str->group_name)
+										'group_name' => base64_decode($res_str->group_name),
 										'user_id' => $res_str->user_id,
 										'user_name' => base64_decode($res_str->user_name) 
 									);

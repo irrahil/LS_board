@@ -2,7 +2,7 @@
 	<div class="cat_form_header">
 		Новый элемент справочника "Статусы задач"
 	</div>
-	<form method=post action="/index.php/cmd_new_status">
+	<form method=post action="/cmd_new_status">
 	<div class="cat_form_str">
 	
 		<div class="cat_form_label">

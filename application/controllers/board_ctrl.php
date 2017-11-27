@@ -23,6 +23,8 @@ class board_ctrl extends CI_Controller {
 		$params = array();
 		if ($this->session->user_name)
 			$data['username'] = $this->session->user_name;
+		if ($this->session->admin)
+			$data['admin']	= true;
 		//drawing form
         $this->load->view('templates/header_view', $data);
 		if ($this->session->user_id != false) 
@@ -265,10 +267,24 @@ class board_ctrl extends CI_Controller {
 	
 	
 	
+	private function check_admin_access() {
+		//Выкидывает в главное меню, если текущий пользователь не является администратором
+		if (empty($this->session->user_id) ) {
+				header("Location: /");
+				exit;
+			}
+			#$params['user_id'] = $this->session->user_id;
+			if (!$this->user_model->get_user_info($this->session->user_id)[0]['is_admin'] ) {
+				header("Location: /");
+				exit;
+			}
+			return true;
+	}
+	
+	
 	public function add_new_status() {
 		if ($this->config->item('app_group_mode') ) {
-			header("Location: /");
-			exit;
+			$this->check_admin_access();
 		}
 		$params = array();
 		$params['status_name'] = htmlspecialchars($this->input->post('statusname'), ENT_QUOTES);
@@ -279,8 +295,7 @@ class board_ctrl extends CI_Controller {
 
 	public function edit_status() {
 		if ($this->config->item('app_group_mode') ) {
-			header("Location: /");
-			exit;
+			$this->check_admin_access();
 		}
 		$params = array();
 		$params['status_id'] = $this->input->post('statusid');
@@ -292,8 +307,7 @@ class board_ctrl extends CI_Controller {
 
 	public function delete_status() {
 		if ($this->config->item('app_group_mode') ) {
-			header("Location: /");
-			exit;
+			$this->check_admin_access();
 		}
 		$params = array();
 		$params['status_id'] = $this->input->get('status_id');

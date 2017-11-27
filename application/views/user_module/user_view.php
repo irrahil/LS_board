@@ -1,5 +1,5 @@
 <div class="user_form">
-	<form method=post action="/index.php/cmd_edit_user">
+	<form method=post action="/cmd_edit_profile">
 	<div class="user_form_str">
 	
 		<div class="user_form_label">
