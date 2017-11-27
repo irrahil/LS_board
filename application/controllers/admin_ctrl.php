@@ -72,10 +72,10 @@ class admin_ctrl extends CI_Controller {
 			$data['monitor'] = $this->admin_model->work_monitor('get');
 		}
 		
-        $this->load->view('templates/header_view', $data);
-		$this->load->view('templates/admin_menu_view', $data);
-		$this->load->view($module.'/'.$page, $data);
-        $this->load->view('templates/footer_view', $data);
+        $this->load->view('templates/Header_view', $data);
+		$this->load->view('templates/Admin_menu_view', $data);
+		$this->load->view($module.'/'.ucfirst($page), $data);
+        $this->load->view('templates/Footer_view', $data);
 	}
 	
 	
