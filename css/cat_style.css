@@ -1,0 +1,52 @@
+.cat_form {
+	display: inline-block;
+}
+
+.cat_form_header {
+	display: block;
+}
+
+.cat_form_str {
+	display: block;
+}
+
+.cat_form_field {
+	display: inline;
+	width: 300px;
+}
+.cat_form_field input {
+	width: 300px;
+}
+
+.cat_form_label {
+	display: inline-block;
+	width: 200px;
+}
+
+.cat_form_button {
+	display: block;
+}
+
+
+
+.list_new_item {
+	
+}
+
+.list_item {
+	display: table-row;
+}
+
+.list_col {
+	display: table-cell;
+	width: auto;
+	border: 1px solid grey;
+	text-align: left;
+}
+
+.list_ctrl {
+	width: 60px;
+	display: table-cell;
+	border: 1px solid grey;
+	text-align: center;
+}

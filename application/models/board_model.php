@@ -123,13 +123,13 @@ class board_model extends CI_Model {
 				$this->db->insert('task_category');
 				$this->db->where('category_name', base64_encode($params['category_name']) );
 				$this->db->select('category_id');
-				$res = $this->db->get('task_category')->result();
+				$cat_id = $this->db->get('task_category')->result()[0]->category_id;
 				if (isset($params['category_access'] ) ) {
 					foreach($params['category_access'] as $access_user) {
 						if ($access_user == $params['user_id'] )
 							continue;
 						$this->db->set('access_id', $access_user);
-						$this->db->set('category_id', $res[0]->category_id);
+						$this->db->set('category_id', $cat_id);
 						$this->db->set('is_group', false);
 						$this->db->insert('user_access');
 					}
@@ -138,7 +138,7 @@ class board_model extends CI_Model {
 					if (isset($params['group_access'] ) ) {
 						foreach($params['group_access'] as $access_group) {
 							$this->db->set('access_id', $access_group);
-							$this->db->set('category_id', $res[0]->category_id);
+							$this->db->set('category_id', $cat_id);
 							$this->db->set('is_group', true);
 							$this->db->insert('user_access');
 						}
@@ -168,7 +168,7 @@ class board_model extends CI_Model {
 						if ($access_user == $params['user_id'] )
 							continue;
 						$this->db->set('access_id', $access_user);
-						$this->db->set('category_id', $res[0]->category_id);
+						$this->db->set('category_id', $params['category_id']);
 						$this->db->set('is_group', false);
 						$this->db->insert('user_access');
 					}
@@ -181,7 +181,7 @@ class board_model extends CI_Model {
 					if (isset($params['group_access'] ) ) {
 						foreach($params['group_access'] as $access_group) {
 							$this->db->set('access_id', $access_group);
-							$this->db->set('category_id', $res[0]->category_id);
+							$this->db->set('category_id', $params['category_id']);
 							$this->db->set('is_group', true);
 							$this->db->insert('user_access');
 						}

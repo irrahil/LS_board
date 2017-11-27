@@ -1,0 +1,34 @@
+.form_css {
+		display: block;
+		margin: 0 auto;
+		#border: 1px solid black;
+		width: 500px;
+		padding: 5px;
+}
+
+.form_str {
+		display: block;
+		width: 500px;
+}
+
+.form_str input {
+	width: 100%;
+}
+
+.form_col {
+		display: inline-block;
+		width: 49%;
+}
+
+.form_col input {
+	width: 100%;
+}
+
+
+.main_message {
+	display: block;
+	margin 0 auto;
+	border: 1px solid black;
+	padding: 10px;
+	text-align: center;
+}

@@ -1,0 +1,22 @@
+.menu {
+	display: inline-block;
+	border: 1px solid black;
+	padding: 10px;
+	width: 100%;
+}
+
+.menu_header {
+	display: inline-block;
+}
+
+.menu_button {
+	display: inline-block;
+	margin: 2px;
+	width: 10%;
+	background-color: grey;
+	border: 1px solid black;
+	padding: 2px;
+	text-align: center;
+	height: 50px;
+	vertical-align: top;
+}
