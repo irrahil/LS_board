@@ -1,3 +1,1 @@
-<?php
-	$config['app_group_mode'] = true;
-?>
+<?php $config['init_base'] = true; $config['app_group_mode'] = true; ?>

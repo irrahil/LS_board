@@ -6,6 +6,16 @@ class user_ctrl extends CI_Controller {
 	
 	public function __construct() {
 		parent::__construct();
+		if ($this->config->item('init_base') ) {
+			//Осуществляем инициализацию базы
+			echo 'Осуществляем установку структуры базы данных.';
+			$this->load->model('Install_model');
+			$this->Install_model->install_database();
+			$new_config['init_base']	  		= 0;
+			$new_config['app_group_mode']	  	= $this->config->item('app_group_mode');
+			$this->Install_model->save_config("./application/config/app_config.php", $new_config); 
+			echo 'Установка структуры базы данных завершена';
+		}
 		$this->load->model('user_model');
 		$this->load->library('session');
 	}
