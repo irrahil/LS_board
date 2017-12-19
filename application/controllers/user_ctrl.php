@@ -13,6 +13,7 @@ class user_ctrl extends CI_Controller {
 			$this->Install_model->install_database();
 			$new_config['init_base']	  		= 0;
 			$new_config['app_group_mode']	  	= $this->config->item('app_group_mode');
+			//$new_config['sendmail_path']		= $this->config->item('sendmail_path');
 			$this->Install_model->save_config("./application/config/app_config.php", $new_config); 
 			echo 'Установка структуры базы данных завершена';
 		}
@@ -98,7 +99,7 @@ class user_ctrl extends CI_Controller {
 	public function restore_pass_req() {
 		$username 	= $this->input->post('username');
 		$email		= $this->input->post('email');
-		
+		$this->user_model->restore_pass_req($username, $email);
 	}
 	
 	

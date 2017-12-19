@@ -54,6 +54,7 @@ $route['cmd_reg_user'] 			= 'user_ctrl/reg_user';
 $route['cmd_login'] 			= 'user_ctrl/login';
 $route['cmd_edit_profile'] 		= 'user_ctrl/edit_user_info';
 $route['cmd_exit']				= 'user_ctrl/exit_from_app';
+$route['cmd_send_restore_req']	= 'user_ctrl/restore_pass_req';
 
 
 //Обработчики board_ctrl

@@ -2,9 +2,17 @@
 class user_model extends CI_Model {
 	
 	public function __construct() {
+		#echo '<meta charset="utf-8">';
 		$this->load->database();
+		#$this->load->library('email');
+		#$this->email->mailpath = $this->config->item('sendmail_path');
 	}
 	
+	
+	
+	private function generate_token() {
+		return hash('SHA256', mt_rand() );
+	}
 	
 	
 	//Регистрация пользователя в системе
@@ -54,13 +62,47 @@ class user_model extends CI_Model {
 	
 	//Отправка запроса на восстановление через email
 	public function restore_pass_req($userlogin, $email) {
+		#phpinfo();
 		$query_cond = array(
 							'user_login' => base64_encode($userlogin),
 							'user_email'  => base64_encode($email)
 							);
-		$query = $this->db->get_where('users', $query_cond);
-		if (count($query->result() ) > 0 ) {
+		$res = $this->db->get_where('users', $query_cond)->result();
+		if (count($res) > 0 ) {
+			//Формирование записи в БД
+			$access_token = $this->generate_token();
+			#print_r($access_token);
+			#print_r($this->email);
+			$base_url = $this->config->config['base_url'];
+			$this->db->set('user_id', $res[0]->user_id);
+			$this->db->set('token', $access_token );
+			$this->db->set('is_used', 'false');
+			#$this->db->insert('restore_list');
 			//TODO Отправка запроса на восстановление через email
+			$message_to_user = '
+				<html>
+					<head></head>
+					<body>
+						Здравствуйте, '.base64_decode($res[0]->user_login).'!<br>
+						<br>
+						По вашему логину и адресу был отправлен запрос на восстановление доступа к сайту '.$base_url.'.<br>
+						Для сброса пароля, пожалуйста, воспользуйтесь следующей 
+						<a href='.$base_url.'restoring?access_token='.$access_token.'&user_id='.$res[0]->user_id.'>ссылкой</a><br>
+						<br>
+						Если вы не отправляли запрос - просто проигнорируйте письмо.<br>
+						<br>
+						Спасибо!
+					</body>
+				</html>
+			';
+			#print_r($message_to_user);
+			$this->email->from($this->email->smtp_user);
+			$this->email->to(base64_decode($res[0]->user_email) );
+			$this->email->subject('Restoring password in board table');
+			$this->email->message($message_to_user);
+			#echo $this->email->print_debugger();
+			$this->email->send();
+			#echo $this->email->print_debugger();
 			return true;
 		}
 		return false;

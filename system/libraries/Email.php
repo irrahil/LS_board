@@ -2047,22 +2047,24 @@ class CI_Email {
 		}
 
 		$ssl = ($this->smtp_crypto === 'ssl') ? 'ssl://' : '';
-
+		echo 'start smtp_connect<br>';
 		$this->_smtp_connect = fsockopen($ssl.$this->smtp_host,
 							$this->smtp_port,
 							$errno,
 							$errstr,
 							$this->smtp_timeout);
-
+		echo 'fsockopen<br>';
 		if ( ! is_resource($this->_smtp_connect))
 		{
+			echo 'error_message<br>';
 			$this->_set_error_message('lang:email_smtp_error', $errno.' '.$errstr);
 			return FALSE;
 		}
-
+		echo 'stream_set_timeout start<br>';
 		stream_set_timeout($this->_smtp_connect, $this->smtp_timeout);
+		echo 'stream_set_timeout end<br>';
 		$this->_set_error_message($this->_get_smtp_data());
-
+		echo 'set_error_message<br>';
 		if ($this->smtp_crypto === 'tls')
 		{
 			$this->_send_command('hello');
@@ -2076,7 +2078,7 @@ class CI_Email {
 				return FALSE;
 			}
 		}
-
+		echo 'send_command hello<br>';
 		return $this->_send_command('hello');
 	}
 
@@ -2094,7 +2096,7 @@ class CI_Email {
 		switch ($cmd)
 		{
 			case 'hello' :
-
+						
 						if ($this->_smtp_auth OR $this->_get_encoding() === '8bit')
 						{
 							$this->_send_data('EHLO '.$this->_get_hostname());
@@ -2145,22 +2147,19 @@ class CI_Email {
 						$resp = 221;
 			break;
 		}
-
 		$reply = $this->_get_smtp_data();
-
+		
 		$this->_debug_msg[] = '<pre>'.$cmd.': '.$reply.'</pre>';
-
+		
 		if ((int) self::substr($reply, 0, 3) !== $resp)
 		{
 			$this->_set_error_message('lang:email_smtp_error', $reply);
 			return FALSE;
 		}
-
 		if ($cmd === 'quit')
 		{
 			fclose($this->_smtp_connect);
 		}
-
 		return TRUE;
 	}
 

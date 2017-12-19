@@ -23,6 +23,8 @@ class Install_model extends CI_Model {
 			$new_config.= '$config[\'app_group_mode\'] = false; ';
 		else
 			$new_config.= '$config[\'app_group_mode\'] = true; ';
+		if (!empty($config['sendmail_path']) )
+			$new_config.= '$config[\'sendmail_path\'] = \''.$config['sendmail_path'].'\'; ';
 		$new_config.= "?>";
 		file_put_contents($filename, $new_config);
     }
