@@ -7,32 +7,37 @@
 	}
 ?>
 
-<div class="main_block">
 	<div class="form_css">
-		<form method=post action="/index.php/cmd_login">
-			<div class="form_str">
-				<div class="form_col">
-					Логин:
-				</div>
-				<div class="form_col">
-					<input type=text name=username value="">
-				</div>
-			</div>
-			<div class="form_str">
-				<div class="form_col">
-					Пароль:
-				</div>
-				<div class="form_col">
-					<input type=password name=userpass value="">
-				</div>
-			</div>
-			<div class="form_str">
-				<input type=submit value="Войти">
-			</div>
-			<div class="form_str">
-				<a href="/registry">Зарегистрироваться</a>
-			</div>
-		</form>
+	<h2>Вход</h2>
+	<form method = "post" action="/index.php/cmd_reg_user" class = "main-form">
+	
+	<div class="form_str">
+		 <!-- <div class="form_col">
+			Логин:
+		</div>  -->
+		<div class="form_col">
+			<input type="text" name="username" value="" placeholder = "Логин">
+			<label for="username"></label>
+		</div>
 	</div>
-		
+	
+	<div class="form_str">
+		<!--<div class="form_col">
+			Пароль:
+		</div>  -->
+		<div class="form_col">
+			<input type = "password" name = "password" value="" placeholder = "Пароль">
+			<label for="password"></label>
+		</div>
+	</div>
+
+	<div class="form_str_last">
+		<input type = "submit" value="Войти" class = "login">
+	</div>
+
+	<div class="form_str_last">
+		<a href="/registry" class = "registr">Зарегистрироваться</a>
+	</div>
+	</form>
+
 </div>

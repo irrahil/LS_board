@@ -1,0 +1,66 @@
+
+.main-form{
+	width: 420px;
+	display: flex;
+	flex-direction: column;
+	-ms-align-items: center;
+	align-items: center;
+	padding: 10px;
+	background: #fff;
+	box-shadow: 0 0 2em rgba(0,0,0,0.2);
+	border-radius: 0.50em;
+	border: 10px solid #dddddd;
+}
+
+input{
+	font-size: 14px;
+	border: 1px solid #c6c6c6;
+	border-radius: 10px;
+}
+
+input[placeholder]{
+	width: 380px;
+	padding: 12px 15px;
+}
+
+.form_col{
+	margin: 10px;
+}
+
+.form_str_last{
+	display:flex;
+	justify-content: center;
+  align-items: center;
+  #border: 1px solid red;
+}
+
+input.registr {
+	background-color: #56241f;
+	color: #fff;
+	font-size: 14px;
+	padding: 10px 25px;
+	margin-right: 5px;
+  cursor: pointer;
+
+}
+
+img.icon_back{
+	background-color: #56241f;
+	padding: 7px;
+	border-radius: 10px;
+}
+
+input.registr,.login {
+	background-color: #56241f;
+	color: #fff;
+	font-size: 14px;
+	padding: 10px 25px;
+	margin-right: 5px;
+  cursor: pointer;
+}
+
+.login{
+	padding: 10px 71px;
+	margin-bottom: 10px;
+}
+
