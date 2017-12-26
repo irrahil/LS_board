@@ -78,7 +78,8 @@ class user_ctrl extends CI_Controller {
 	//Функция входа в систему
 	public function login() {
 		$username = $this->input->post('username');
-		$userpass = $this->input->post('userpass');
+		$userpass = $this->input->post('password');
+		echo $userpass;
 		if ($this->user_model->check_user($username, $userpass) ) {
 			$user_id =  $this->user_model->get_user_id($username);
 			$user_info = $this->user_model->get_user_info($user_id)[0];
