@@ -1,5 +1,25 @@
+.content,.content_reg{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0 auto;
+    border: 5px solid #1f1f20;
+	border-radius: 10px;
+	background-color: #b1ae8f;
+	margin-top: -70px;
+}
 
-.main-form{
+
+h2{
+	text-align: center;
+	margin: 25px;
+	font-size: 24px;
+}
+
+
+.main_form_log, .main_form_reg {
 	width: 420px;
 	display: flex;
 	flex-direction: column;
@@ -34,13 +54,13 @@ input[placeholder]{
   #border: 1px solid red;
 }
 
-input.registr {
+a.registr,input.registr {
 	background-color: #56241f;
 	color: #fff;
 	font-size: 14px;
 	padding: 10px 25px;
 	margin-right: 5px;
-  cursor: pointer;
+    cursor: pointer;
 
 }
 
@@ -50,17 +70,23 @@ img.icon_back{
 	border-radius: 10px;
 }
 
-input.registr,.login {
+a.registr,.login {
 	background-color: #56241f;
 	color: #fff;
 	font-size: 14px;
-	padding: 10px 25px;
+	padding: 10px 30px;
 	margin-right: 5px;
-  cursor: pointer;
+   cursor: pointer;
+   text-decoration: none;
+   border-radius: 10px;
 }
 
 .login{
 	padding: 10px 71px;
 	margin-bottom: 10px;
 }
+
+
+
+
 

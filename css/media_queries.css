@@ -1,0 +1,146 @@
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+  .content,.content_reg{
+    background-color: green;
+    margin-top: -55px;
+    min-height: 450px
+  }
+    .content_reg {
+    min-height: 600px;
+  }
+}
+
+/* Portrait tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .content,.content_reg{
+    background-color: red;
+    margin-top: -40px;
+    min-height: 450px
+  }
+
+  .content_reg{
+    min-height: 600px;
+  }
+
+  h2{
+    margin-top: -25px;
+  }
+
+
+
+
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+  .content,.content_reg{
+    background-color: yellow;
+    margin-top: -45px;
+    min-height: 450px;
+
+  }
+   .content_reg{
+    min-height: 600px;
+  }
+
+  h2{
+    margin-top: -50px;
+  }
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+  .content,.content_reg{
+    background-color: pink;
+    margin-top: -39px;
+    min-height: 450px;
+    border: 2px solid black;
+  }
+   .content_reg{
+    min-height: 600px;
+  }
+  .top_board {
+    height: 80px;
+  }
+  
+  .left_board, .right_board, .bottom_board{
+    flex-basis: 12px;
+  }
+
+  .main_form_log{
+    width: 380px;
+  }
+
+  input[placeholder]{
+    width: 340px;
+  }
+
+  h2{
+    margin-top: -20px;
+  }
+
+}
+
+/* Landscape phones and smaller */
+@media (max-width: 480px) {
+  .content,.content_reg{
+    background-color: white;
+    min-height: 350px;
+    margin-top: -20px;
+    border: 2px solid black;
+  }
+  .content_reg{
+    min-height: 600px;
+  }
+
+ .top_board {
+    height: 50px;
+  }
+  
+  .left_board, .right_board, .bottom_board{
+    flex-basis: 10px;
+  }
+
+  .main_form_log, .main_form_reg{
+    margin: auto;
+    width: 260px;
+    box-shadow: none;
+    border: 3px solid #dddddd;
+    height: 220px;
+  }
+  .main_form_reg{
+    min-height: 360px;
+  }
+  h2{
+    font-size: 14px;
+  }
+
+
+  input[placeholder]{
+    width: 235px;
+  }
+
+  .login{
+    padding: 9px 69px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+    input.registr{
+      padding: 6px;
+      margin-top: 5px;
+    }
+
+    input[value]{
+      font-size: 14px;
+    }
+
+    .form_col{
+      margin: 3px;
+    }
+}
+
+img.icon_back{
+  padding: 4px;
+  margin-top: 5px;
+}

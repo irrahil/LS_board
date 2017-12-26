@@ -1,0 +1,118 @@
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+  .content,.content_reg{
+    background-color: green;
+    margin-top: -55px;
+    min-height: 600px;
+  }
+}
+
+/* Portrait tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .content,.content_reg{
+    background-color: red;
+    margin-top: -40px;
+    min-height: 600px;
+  }
+
+
+  h2{
+    margin-top: -25px;
+  }
+
+
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+  .content,.content_reg{
+    background-color: yellow;
+    margin-top: -45px;
+    min-height: 600px;
+
+  }
+
+
+  h2{
+    margin-top: -50px;
+  }
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+  .content,.content_reg{
+    background-color: pink;
+    margin-top: -39px;
+    min-height: 600px;
+  }
+  .top_board {
+    height: 80px;
+  }
+
+  .main_form_reg{
+    width: 370px;
+  }
+
+  input[placeholder]{
+    width: 330px;
+  }
+
+  h2{
+    margin-top: -20px;
+  }
+
+}
+
+/* Landscape phones and smaller */
+@media (max-width: 480px) {
+  .content,.content_reg{
+    background-color: white;
+    min-height: 350px;
+    margin-top: -20px;
+    min-height: 450px;
+    border: 2px solid black;
+  }
+
+  .top_board {
+    height: 50px;
+  }
+
+  .left_board, .right_board, .bottom_board{
+    flex-basis: 7px;
+  }
+
+  .main_form_reg{
+    margin: auto;
+    width: 260px;
+    box-shadow: none;
+    border: 2px solid #dddddd;
+
+  }
+  h2{
+    font-size: 12px;
+  }
+
+
+  input[placeholder]{
+    width: 200px;
+  }
+
+  .login{
+    padding: 6px 45px;
+    margin-bottom: 0;
+}
+    input.registr{
+      padding: 0 3px;
+      margin-top: 2px;
+    }
+
+    input[value]{
+      font-size: 12px;
+    }
+
+    .form_col{
+      margin: 3px;
+    }
+}
+
