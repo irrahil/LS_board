@@ -1,5 +1,12 @@
-		</div>
-		<hr><em>&copy; 2017</em>
+            </div>
+	        <div class="right_board"></div>
+	        </div>  <!-- class="middle" -->
+        <div class="bottom_board">
+            <!--<hr><em>&copy; 2018</em>-->
+        </div>
+      
+	</div>
+		
 	</body>
 	
 	

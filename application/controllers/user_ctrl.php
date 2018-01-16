@@ -32,12 +32,16 @@ class user_ctrl extends CI_Controller {
 		if ($this->session->admin)
 			$data['admin']	= true;
 		//drawing form
+		$data['small_style'] = true;
         $this->load->view('templates/Header_view', $data);
 		if ($this->session->user_id != false) {
-			if ($page == 'login_view')
+			if ($page == 'login_view') {
 				header("Location: /board");
+				return;
+			}
 			$this->load->view('templates/Menu_view', $data);
 		}
+		$this->load->view('templates/Header2_view', $data);
         $this->load->view('user_module/'.ucfirst($page), $data);
         $this->load->view('templates/Footer_view', $data);
 	}

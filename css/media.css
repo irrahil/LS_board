@@ -1,0 +1,74 @@
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+  .main_form {
+    background-color: green;
+  }
+}
+
+/* Portrait tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .main_form{
+    background-color: red;
+   }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+  .main_form {
+    background-color: yellow;
+  }
+
+  .task{
+    padding-left: 15px;
+  }
+
+}
+
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+  .main_form{
+    background-color: pink;
+  }
+
+  .form_last_item{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Landscape phones and smaller */
+@media (max-width: 480px) {
+
+  /*Все-таки на мобильной версии без лишнего кода не обойтись*/
+
+  /*Расписание*/
+ .left_board, .right_board, .bottom_board{
+    flex-basis: 25px;
+  }
+  .main_form{
+    background-color: white;
+    flex-direction: column;
+  }
+  .main{
+    order:2;
+  }
+  .sidebar{
+    display: flex;
+    align-items: center;
+    order:1;
+    margin-bottom: 10px;
+    border-left: none;
+  }
+  .form_filter{
+    display: none;
+  }
+
+  .form_button{
+     margin-top: 5px;
+     margin-left: 5px;
+  }
+}
+
+
+

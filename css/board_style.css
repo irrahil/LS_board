@@ -3,6 +3,7 @@
 	height: 100px;
 	#border: 1px solid red;
 	background-image: url(http://www.pixic.ru/i/E0Z1e4O7r791g0u9.png);
+	z-index: 10000;
 }
 	
 .middle {
@@ -12,9 +13,7 @@
 	-ms-align-items: stretch;
 	align-items: stretch;
 	opacity: 1;
-	margin-top: -10px;
 	background-color: #585453;
-
 		
 }
 	
@@ -42,17 +41,16 @@
 		
 }
 
-.content,.content_reg{
+.content{
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	margin: 0 auto;
     border: 5px solid #1f1f20;
 	border-radius: 10px;
 	background-color: #b1ae8f;
-	margin-top: -70px;
+	margin-top: -30px;
 }
 
 

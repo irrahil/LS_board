@@ -16,6 +16,7 @@ class admin_ctrl extends CI_Controller {
 		if ($data == NULL) 
 			$data = array();
 		$data['app_group_mode'] = $this->config->item('app_group_mode');
+		$data['small_style'] = false;
 		if (!$this->config->item('app_group_mode') ) {
 			header("Location: /");
 			exit;
@@ -74,6 +75,7 @@ class admin_ctrl extends CI_Controller {
 		
         $this->load->view('templates/Header_view', $data);
 		$this->load->view('templates/Admin_menu_view', $data);
+		$this->load->view('templates/Header2_view', $data);
 		$this->load->view($module.'/'.ucfirst($page), $data);
         $this->load->view('templates/Footer_view', $data);
 	}

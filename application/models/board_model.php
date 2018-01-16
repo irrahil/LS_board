@@ -85,6 +85,27 @@ class board_model extends CI_Model {
 				if (!isset($params['admin']) ) {
 					$this->get_user_conds($params);
 				}
+				//FILTERS
+				if (isset($params['filters']) ) {
+					foreach ($params['filters'] as $filter_name => $filter) {
+						switch $filter_name {
+							case: 'user': {
+								$this->db->where('user_access.access_id', $filter);
+								$this->db->where('user_access.is_group', false);
+								break;
+							}
+							case: 'category': {
+								$this->db->where('tasks.task_category', $filter);
+								break;
+							}
+							case 'status': {
+								$this->db->where('tasks.task_status', $filter);
+								break;
+							}
+							default: break;
+						}
+					}
+				}
 				$this->db->distinct();
 				//ORDER BY
 				$this->db->order_by('tasks.task_priority');
@@ -375,12 +396,7 @@ class board_model extends CI_Model {
 			}
 			
 			case 'get': {
-				if (isset($params['rec_id']) )
-					$this->db->where('schedules.rec_id', $params['rec_id']);
-				if (isset($params['user_id'] ) )
-					$this->db->where('schedules.user_id', $params['user_id']);
-				if (isset($params['schedule_date'] ) )
-					$this->db->where('schedules.schedule_date', $params['schedule_date'] );
+				//SELECT
 				$this->db->select('
 									schedules.rec_id,
 									schedules.user_id,
@@ -390,8 +406,34 @@ class board_model extends CI_Model {
 									schedules.comments,
 									users.user_name
 								  ');
-				$this->db->join('users', 'users.user_id = schedules.user_id');
+				//WHERE
+				if (isset($params['rec_id']) )
+					$this->db->where('schedules.rec_id', $params['rec_id']);
+				if (isset($params['user_id'] ) )
+					$this->db->where('schedules.user_id', $params['user_id']);
+				if (isset($params['schedule_date'] ) )
+					$this->db->where('schedules.schedule_date', $params['schedule_date'] );
+				//FILTERS
+				if (isset($params['filters']) ) {
+					foreach ($params['filters'] as $filter_name => $filter) {
+						switch $filter_name {
+							case: 'user': {
+								$this->db->where('schedules.user_id', $filter);
+								break;
+							}
+							case: 'date': {
+								$this->db->where('schedules.schedule_date', $filter);
+								break;
+							}
+							default: break;
+						}
+					}
+				}
+				//JOIN
+				$this->db->join('users', 'users.user_id = schedules.user_id');\
+				//ORDER BY
 				$this->db->order_by('schedules.schedule_date', 'ASC');
+				//FROM
 				$res = $this->db->get('schedules')->result();
 				$data = array();
 				foreach ($res as $res_str) {
@@ -483,33 +525,13 @@ class board_model extends CI_Model {
 				//WHERE
 				if (isset($params['rec_id']) )
 					$this->db->where('board.rec_id', $params['rec_id']);
-				
-				if (isset($params['user_id'] ) ) {
+				if (isset($params['user_id'] ) )
 					$this->get_user_conds($params);
-					// 
-					// if ($this->config->item('app_group_mode') ) {
-						// $this->db->	group_start()
-										// ->where('user_access.access_id', $params['user_id'] )
-										// ->where('user_access.is_group', false)
-									// ->group_end()
-									// ->or_group_start()
-										// ->where('user_access.is_group', true)
-										// ->where('roles.user_id', $params['user_id'])
-								// ->group_end();
-						// $this->db->join('roles', 'roles.group_id = user_access.access_id AND user_access.is_group = 1', 'left');
-					// } else {
-						// $this->db->where('user_access.access_id', $params['user_id']);
-						// $this->db->where('user_access.is_group', false);
-					// }
-					// $this->db->or_group_start()
-								// ->where('task_category.owner_id', $params['user_id'])
-							 // ->group_end();
-				}
-					
 				if (isset($params['date_begin'] ) )
 					$this->db->where('schedules.schedule_time_begin >= ', $params['date_begin']);
 				if (isset($params['date_end'] ) )
 					$this->db->where('schedules.schedule_time_end <= ', $params['date_end']);
+				//FILTER
 				if (isset($params['day_begin'] ) AND isset($params['day_end']) ) {
 					$this->db->where('schedule_date >=', $params['day_begin']);
 					$this->db->where('schedule_date <=', $params['day_end']);

@@ -6,59 +6,32 @@
 		echo '<div class="main_message">Некорректно указан логин и / или пароль!</div>';
 	}
 ?>
+	
+	    <div class="container_log">
+				<div class="main_form" style="width:420px; min-height:200px;">
+			    	<div>
+						<h2>Вход</h2>
 
-		<div class="top_board">
-		</div>
+						<form method = "post" action="/cmd_login" id="date"></form>
 
-		<div class="middle">
-			
-			<div class="left_board">
+						<div>
+							<input type="text" name="username" value="" placeholder = "Логин" class="form_input" form="date">
+							<label for="username"></label>
+						</div>
 
+						<div>
+							<input type = "password" name = "password" value="" placeholder = "Пароль" class="form_input" form="date">
+							<label for="password"></label>
+						</div>
+
+						<div>
+							<input type = "submit" value="Войти" class = "form_button" form="date" style="width: 175px;">
+						</div>
+
+						<div>
+							<a href ="/registry" class = "form_button" form="date">Зарегистрироваться</a>
+						</div>
+
+					</div>
+				</div>
 			</div>
-
-			
-			<div class = 'content'>
-	
-	<div class="form_css">
-	<h2>Вход</h2>
-	<form method = "post" action="/index.php/cmd_login" class = "main_form_log">
-	
-	<div class="form_str">
-
-		<div class="form_col">
-			<input type="text" name="username" value="" placeholder = "Логин">
-			<label for="username"></label>
-		</div>
-	</div>
-	
-	<div class="form_str">
-	
-		<div class="form_col">
-			<input type = "password" name = "password" value="" placeholder = "Пароль">
-			<label for="password"></label>
-		</div>
-	</div>
-
-	<div class="form_str_last">
-		<input type = "submit" value="Войти" class = "login">
-	</div>
-
-	<div class="form_str_last">
-		<a href ="/registry" class = "registr">Зарегистрироваться</a>
-	</div>
-	</form>
-
-</div>
-
-
-	</div>
-
-			<div class="right_board">
-
-			</div>
-			</div>
-
-
-		<div class="bottom_board">
-		
-		</div>

@@ -1,0 +1,304 @@
+/*BORDER STYLES*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box
+}
+
+
+.main_form div{
+	width:100%;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+
+.top_board {
+		width: 100%;
+		height: 130px;
+		background: url(/image/backgr.png) no-repeat top right,
+					url(/image/backgr.png) repeat-x,
+					url(/image/backgr.png) no-repeat top left;
+								
+}
+.middle {
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	margin-top: -10px;
+	background-color: #585453;
+	min-height: calc(100vh - 167px);
+}
+	
+.top_board_small {
+	width: 100%;
+	height: 30px;
+	background: url(/image/backgr.png) no-repeat top right,
+				url(/image/backgr.png) repeat-x,
+				url(/image/backgr.png) no-repeat top left;
+}
+.middle_small {
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	margin-top: -10px;
+	background-color: #585453;
+	min-height: calc(100vh - 50px);
+}
+	
+	.bottom_board {
+		width: 100%;
+		height: 30px;
+		background-image: url(/image/i.png);
+	}
+	
+	.left_board {
+		flex-basis:30px;
+		background-image: url(/image/i.png);
+	}
+	
+	.right_board {
+		flex-basis: 30px;
+		background-image: url(/image/i.png);
+		
+	}
+
+    .content{
+    	/*border_styles.css*/
+    	border: 5px solid black;
+    	border-radius: 10px;
+	    background-color: #b1ae8f;
+    	/*margin-top: -70px;*/
+    	width: 100%;
+    }
+  .main_form {
+	width: 100%;
+	padding: 10px;
+	background: #fff;
+	border-radius: 5px;
+	border: 5px solid #dddddd;
+	display:flex;
+	min-height: calc(100vh - 187px);
+}
+
+/*MENU STYLES*/
+.menu {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  list-style-type: none;
+  margin-left: 8.5px;
+    
+}
+
+.menu a{
+	display: block;
+	text-decoration: none;
+	color: #fff;
+	font-size: 20px;
+	margin-top: 35px;
+}
+
+li {
+  flex: 1 1 100%;
+  height: 120px;
+    }
+
+li:last-child{
+	margin-right: 15px;
+}
+
+.fon {
+
+	background-image: url(/image/fon_menu.png);
+	background-repeat: no-repeat;
+}
+
+body {
+    background-color: black;   
+}
+
+/*SCHEDULE STYLES*/
+.main{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	#border: 1px solid red;
+	margin-right: 10px;
+}
+.sidebar{
+	width: 25%;
+	min-width: 140px;
+	border-left: 1px solid black;
+	padding-left: 5px;
+}
+
+.main_form .cell{
+	text-align: left;	
+}
+
+.main_form .cell_icons{
+	width: 60px;
+	display: flex;
+	padding-top: 10px;
+}
+.delete{
+	margin-left: 5px;
+}
+
+/*FORM STYLES*/
+.form_input,.form_list_item{
+	width: 100%;
+	border:1px solid #dddddd;
+	padding: 9px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.form_button {
+	/*width: 100%; Как насчет того, чтобы прописать это прямо в теге?*/
+	background-color: #56241f;
+  padding: 10px 20px;
+	border-radius: 5px;
+	border:none;
+	text-decoration: none;
+	color: #fff;
+	margin-bottom: 10px;
+}
+.icon_back{
+	background-color: #56241f;
+	padding: 8.5px;
+	border-radius: 5px;
+}
+
+.form_filter{
+	width: 100%;
+	height: 35px;
+	border:1px solid #56241f;
+	border-radius:5px;
+}
+
+/*FORM STYLES*/
+.form_input,.main_form .form_last_item{
+	width: 100%;
+	border:1px solid #dddddd;
+	padding: 9px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.form_button {
+	/*width: 100%; Как насчет того, чтобы прописать это прямо в теге?*/
+	background-color: #56241f;
+  padding: 10px 20px;
+	border-radius: 5px;
+	border:none;
+	text-decoration: none;
+	color: #fff;
+	margin-bottom: 15px;
+}
+.icon_back{
+	background-color: #56241f;
+	padding: 8.5px;
+	border-radius: 5px;
+}
+
+.form_filter{
+	width: 100%;
+	height: 35px;
+	border:1px solid #56241f;
+	border-radius:5px;
+}
+
+/*FORM SEARCH STYLES*/
+.container_search {
+	min-width: 120px;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+/*Необходимо отключ рамку*/
+.container_search input {
+  border: none;
+}
+
+/* стили для поля ввода */
+.container_search .form_search {
+  /* растягиваем поле ввода на всю ширину формы */
+  width: 100%;
+  padding: 8px 37px 9px 15px;
+  border: 1px solid #56241f; 
+  border-radius: 5px;
+  font: 13px Tahoma, Arial, sans-serif;
+  color: #555;
+  outline: none;
+}
+/* оформляем кнопку отправки */
+.container_search .search_icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 37px;
+  height: 100%;
+  cursor: pointer;
+  background: url(https://lh4.googleusercontent.com/-b-5aBxcxarY/UAfFW9lVyjI/AAAAAAAABUg/gQtEXuPuIds/s13/go.png) 50% no-repeat;
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+}
+
+/*LOGIN STYLES*/
+.form_head{
+	 text-align:center; 
+	 margin-bottom: 20px;
+}
+
+.form_str_last{
+	display:flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.container_log{
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	-ms-align-items: center;
+	align-items: center;
+}
+
+/*.container_log{
+	min-height: calc(100vh - 187px);
+	display: flex;
+	
+	justify-content: center;
+}*/
+/*Горизонтальное расположение элементов label,input,button
+(страниц категория задач, новоая категория)*/
+.new_categ{
+	display: flex;
+}
+
+/*.content{
+	min-height: calc(100vh - 57px);
+
+}
+.top_board{
+	height: 60px;
+}
+.bottom_board{
+	height: 20px;
+}
+.left_board,.right_board{
+	flex-basis: 20px;
+}*/
+
+
+
+
+

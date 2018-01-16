@@ -20,6 +20,7 @@ class board_ctrl extends CI_Controller {
 		if ($data == NULL) 
 			$data = array();
 		$data['app_group_mode'] = $this->config->item('app_group_mode');
+		$data['small_style'] = false;
 		$params = array();
 		if ($this->session->user_name)
 			$data['username'] = $this->session->user_name;
@@ -33,6 +34,8 @@ class board_ctrl extends CI_Controller {
 			header("Location: /");
 			exit;
 		}
+		$this->load->view('templates/Header2_view', $data);
+		
 		if ($page == 'new_task_view') {
 			$data['categories'] = $this->board_model->work_category('get');
 		}
