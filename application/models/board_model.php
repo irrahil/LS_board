@@ -88,13 +88,13 @@ class board_model extends CI_Model {
 				//FILTERS
 				if (isset($params['filters']) ) {
 					foreach ($params['filters'] as $filter_name => $filter) {
-						switch $filter_name {
-							case: 'user': {
+						switch ($filter_name) {
+							case 'user': {
 								$this->db->where('user_access.access_id', $filter);
 								$this->db->where('user_access.is_group', false);
 								break;
 							}
-							case: 'category': {
+							case 'category': {
 								$this->db->where('tasks.task_category', $filter);
 								break;
 							}
@@ -416,12 +416,12 @@ class board_model extends CI_Model {
 				//FILTERS
 				if (isset($params['filters']) ) {
 					foreach ($params['filters'] as $filter_name => $filter) {
-						switch $filter_name {
-							case: 'user': {
+						switch ($filter_name) {
+							case 'user': {
 								$this->db->where('schedules.user_id', $filter);
 								break;
 							}
-							case: 'date': {
+							case 'date': {
 								$this->db->where('schedules.schedule_date', $filter);
 								break;
 							}
@@ -430,7 +430,7 @@ class board_model extends CI_Model {
 					}
 				}
 				//JOIN
-				$this->db->join('users', 'users.user_id = schedules.user_id');\
+				$this->db->join('users', 'users.user_id = schedules.user_id');
 				//ORDER BY
 				$this->db->order_by('schedules.schedule_date', 'ASC');
 				//FROM
