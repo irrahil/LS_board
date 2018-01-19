@@ -249,6 +249,13 @@ input[type="search"] {
 	flex-basis: 20px;
 	height: 50px;
 }
+.block_color:hover:after {
+	content: attr(data-title); /* Выводим текст */
+    position: relative; /* Абсолютное позиционирование */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+	color: white;
+}
+
 .block_green,.sts_green{
 	background-color: #00ff00;
 }

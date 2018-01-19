@@ -14,7 +14,8 @@
 					<div class="form_list_item list_item">
 						<div class="cell ce"><?php echo '' ,$task['task_name']; ?></div>
 						<div class="cell ce"><?php echo 'Категория: ' ,$task['category_name']; ?></div>
-						<div class="cell ce block_color" style="background-color: <?php echo $task['status_color'];?>;"><?php //echo 'Статус: ' ,$task['status_name']; ?></div>
+						<div class="cell ce block_color" style="background-color: <?php echo $task['status_color'];?>;" data-title="
+						<?php echo $task['status_name']; ?>"></div>
 						<div class="ce cell_icons">
 							<div class="edit"><?php echo '<a href=/task?task_id=', $task['task_id'] , '><img src="image/icon_edit.png" alt=""></a>'; ?></div>
 							<div class="delete"><?php echo '<a href=/cmd_delete_task?task_id=', $task['task_id'] , '><img src="image/icon_delete.png" alt=""></a>'; ?></div>
