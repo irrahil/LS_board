@@ -245,8 +245,7 @@ input[type="search"] {
 	display: flex;
 }
 
-.block_green,.block_orange,
-.block_grey,.block_red{
+.block_color{
 	flex-basis: 20px;
 	height: 50px;
 }
