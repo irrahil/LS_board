@@ -72,20 +72,19 @@
 					<input type="submit" name="" value="" class="search_icon" />
 				</form>
 
-				<a href=/index.php/new_task><button class='form_button' style='width:100%'>Добавить</button></a><br>
+				<a href=/index.php/new_board_entry><button class='form_button' style='width:100%'>Добавить</button></a><br>
 
 				<select name="carlist" form="carform" class="form_filter">
-					<option>Фильтр</option>
-					<option value="Имя пользователя"><input type="text" value=""></option>
-					<option value="Дата">
-					<input type="date" name="" id="">
-					<input type="date" name="" id="">
-					</option>
-					<option value="Время">
-					<input type="time" name="" id="">
-					<input type="time" name="" id="">
-					</option>
+					<option>--Фильтр--</option>
+					<option>Имя пользователя</option>
+					<option>Дата и время</option>
 				</select>
+				<input type="text" id="user_name" value="">
+				<input type="date" name="" id="date_begin">
+				<input type="date" name="" id="date_end">
+				<input type="time" name="" id="time_begin">
+				<input type="time" name="" id="time_end">
+				
 			</aside>
 
 		</div>

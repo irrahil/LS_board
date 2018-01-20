@@ -22,9 +22,11 @@
     	<li class="menu-button fon">
 		    <a href=/schedules>Расписание</a>
 	    </li>
-	    <li class="menu-button fon">
+	    <!--	Ненужная более кнопка
+		<li class="menu-button fon">
 	    	<a href=/new_board_entry>Добавить задачу</a>
 	    </li>
+		-->
     	<li class="menu-button fon" style='background-image: url(/image/can.png)'>
 		    <a href=/cmd_exit>Выход</a>
 	    </li>
