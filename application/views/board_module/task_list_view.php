@@ -32,7 +32,7 @@
 						<input type="submit" name="" value="" class="search_icon" />
 					</form>
 
-					<a href="#" class=""><button class='form_button' style='width:100%'>Добавить</button></a><br>
+					<a href=/index.php/new_task><button class='form_button' style='width:100%'>Добавить</button></a><br>
 				</aside>
 			</div>
 

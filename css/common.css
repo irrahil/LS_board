@@ -251,27 +251,12 @@ input[type="search"] {
 }
 .block_color:hover:after {
 	content: attr(data-title); /* Выводим текст */
-    position: relative; /* Абсолютное позиционирование */
-    z-index: 1; /* Отображаем подсказку поверх других элементов */
+  position: relative; /* Абсолютное позиционирование */
+  z-index: 1; /* Отображаем подсказку поверх других элементов */
 	color: white;
 }
 
-.block_green,.sts_green{
-	background-color: #00ff00;
-}
-.block_orange,.sts_orange{
-	background-color: #f98e3c;
-}
-
-.block_grey,.sts_grey{
-	background-color: #a2a2a2;
-}
-
-.block_red,.sts_red{
-	background-color: #ff0000;
-}
-
-.list_item{
+.list_item {
 	padding-top: 0;
 	padding-bottom: 0;
 }
