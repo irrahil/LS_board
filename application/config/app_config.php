@@ -1,1 +1,1 @@
-<?php $config['init_base'] = false; $config['app_group_mode'] = true; //$config['sendmail_path'] = 'f:\ApachePHP\apache\bin\sendmail.exe -t'; ?>
+<?php $config['init_base'] = true; $config['app_group_mode'] = true; //$config['sendmail_path'] = 'f:\ApachePHP\apache\bin\sendmail.exe -t'; ?>
