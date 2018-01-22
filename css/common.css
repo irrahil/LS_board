@@ -155,6 +155,7 @@ body {
 	margin-bottom: 10px;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .form_button {
@@ -166,40 +167,6 @@ body {
 	text-decoration: none;
 	color: #fff;
 	margin-bottom: 10px;
-}
-.icon_back{
-	background-color: #56241f;
-	padding: 8.5px;
-	border-radius: 5px;
-}
-
-.form_filter{
-	width: 100%;
-	height: 35px;
-	border:1px solid #56241f;
-	border-radius:5px;
-}
-
-/*FORM STYLES*/
-.form_input,.main_form .form_last_item{
-	width: 100%;
-	border:1px solid #dddddd;
-	padding: 9px;
-	border-radius: 5px;
-	margin-bottom: 10px;
-	display: flex;
-	justify-content: space-between;
-}
-
-.form_button {
-	/*width: 100%; Как насчет того, чтобы прописать это прямо в теге?*/
-	background-color: #56241f;
-  padding: 10px 20px;
-	border-radius: 5px;
-	border:none;
-	text-decoration: none;
-	color: #fff;
-	margin-bottom: 15px;
 }
 .icon_back{
 	background-color: #56241f;
@@ -258,12 +225,6 @@ input[type="search"] {
 	 margin-bottom: 20px;
 }
 
-.form_str_last{
-	display:flex;
-	justify-content: center;
-	text-align: center;
-}
-
 .container_log{
 	height: 100%;
 	display: flex;
@@ -272,12 +233,36 @@ input[type="search"] {
 	align-items: center;
 }
 
-/*.container_log{
-	min-height: calc(100vh - 187px);
+/*Board task status*/
+
+.main_form .cell{
+	width: 30%;
+	text-align: left;	
+}
+
+.main_form .cell_icons{
+	width: 60px;
 	display: flex;
-	
-	justify-content: center;
-}*/
+}
+
+.block_color{
+	flex-basis: 20px;
+	height: 50px;
+}
+.block_color:hover:after {
+	content: attr(data-title); /* Выводим текст */
+  position: relative; /* Абсолютное позиционирование */
+  z-index: 1; /* Отображаем подсказку поверх других элементов */
+	color: white;
+}
+
+.list_item {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.main_form .ce{
+	margin-bottom: 0;
+}
 /*Горизонтальное расположение элементов label,input,button
 (страниц категория задач, новоая категория)*/
 .new_categ{
