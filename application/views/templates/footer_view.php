@@ -21,6 +21,11 @@
 			time[i].addEventListener('keyup', test);
 			time[i].addEventListener('change', check_time);
 		}
+		var filter_list = document.getElementsByName('filter_list');
+		for (var i = 0; i < filter_list.length; i++) 
+			filter_list[i].addEventListener('change', changeFilterVisible);
+		
+		changeFilterVisible();
 		
 		function test() {
 		   var value = this.value; 

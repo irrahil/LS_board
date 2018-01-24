@@ -1,43 +1,4 @@
-<!-- <?php #print_r($board_info); ?>
-
-<div class="board">
-
-	<table border=1 width=100%>
-		<?php foreach($board_info AS $board_entry) : ?>
-			<tr style="color: <?php echo $board_entry['status_color']; ?>; 
-				      <?php if ($board_entry['schedule_date'] == date_create("now", new DateTimeZone("Europe/Moscow") )->format("Y-m-d") )
-								echo " font-weight: bold;";
-							else
-								echo " font-size: 80%;";
-					  ?>">
-				<td>
-					<?php echo $board_entry['schedule_date']; ?>
-				</td>
-				<td>
-					<?php echo $board_entry['user_name']; ?>
-				</td>
-				<td>
-					<?php echo $board_entry['schedule_time_begin'], ' - ', $board_entry['schedule_time_end']; ?>
-				</td>
-				<td>
-					<?php echo $board_entry['task_name'], ' (', $board_entry['category_name'], ')'; ?>
-				</td>
-				<td>
-					<?php echo #'<font color="', $board_entry['status_color'], '">', 
-								$board_entry['status_name']
-								#, '</font>'; ?>
-				</td>
-				<td>
-					<?php echo '<a href="/board_entry?rec_id=', $board_entry['rec_id'], '">Edit</a>'; ?>
-				</td>
-				<td>
-					<?php echo '<a href="/cmd_delete_entry?rec_id=', $board_entry['rec_id'], '">Delete</a>'; ?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
-	</table>
-
-</div> -->
+<?php #print_r($board_info); ?>
 
 <div class="main_form">
 
@@ -74,16 +35,16 @@
 
 				<a href=/index.php/new_board_entry><button class='form_button' style='width:100%'>Добавить</button></a><br>
 
-				<select name="carlist" form="carform" class="form_filter">
-					<option>--Фильтр--</option>
-					<option>Имя пользователя</option>
-					<option>Дата и время</option>
+				<select name="filter_list" class="form_filter">
+					<option value="none">--Фильтр--</option>
+					<option value="user_name">Имя пользователя</option>
+					<option value="date_time">Дата и время</option>
 				</select>
-				<input type="text" id="user_name" value="">
-				<input type="date" name="" id="date_begin">
-				<input type="date" name="" id="date_end">
-				<input type="time" name="" id="time_begin">
-				<input type="time" name="" id="time_end">
+				<input type="text" name="filter_value" id="user_name_filter" value="">
+				<input type="date" name="filter_value" class="date" id="date_begin_filter">
+				<input type="date" name="filter_value" class="date" id="date_end_filter">
+				<input type="time" name="filter_value" class="time" id="time_begin_filter">
+				<input type="time" name="filter_value" class="time" id="time_end_filter">
 				
 			</aside>
 
