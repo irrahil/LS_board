@@ -73,6 +73,8 @@ $route['cmd_delete_status']		= 'board_ctrl/delete_status';
 $route['cmd_new_entry']			= 'board_ctrl/add_board_entry';
 $route['cmd_edit_entry']		= 'board_ctrl/edit_board_entry';
 $route['cmd_delete_entry']		= 'board_ctrl/delete_board_entry';
+$route['add_filter']			= 'board_ctrl/add_filter';
+
 
 //Обработчики admin_ctrl
 $route['cmd_new_user']			= 'admin_ctrl/admin_new_user';

@@ -11,6 +11,42 @@ class board_ctrl extends CI_Controller {
 		$this->load->model('user_model');
 		if ($this->config->item('app_group_mode') )
 			$this->load->model('admin_model');
+		$this->load->helper('cookie');
+	}
+	
+	
+	
+	private function make_cookie_name($page, $filter) {
+		return $page + "_" + $filter;
+	}
+	
+	
+	private function make_filters($page_name, $params) {
+		
+		$d = date_create('now', new DateTimeZone('Europe/Moscow') );
+		$day_begin 		= get_cookie($this->make_cookie_name($page_name, 'day_begin') );
+		$day_end 		= get_cookie($this->make_cookie_name($page_name, 'day_end') );
+		$time_begin 	= get_cookie($this->make_cookie_name($page_name, 'time_begin') );
+		$time_end 		= get_cookie($this->make_cookie_name($page_name, 'time_end') );
+		$user_name 		= get_cookie($this->make_cookie_name($page_name, 'user_name') );
+		$category_name 	= get_cookie($this->make_cookie_name($page_name, 'category_name') );
+		
+		switch($page_name) {
+			case 'board': {
+				if (isset($day_begin) ) 
+					$params['day_begin'] = $day_begin;
+				if (isset($day_end) )
+					$params['day_end']	= $day_end;
+				if (isset($time_begin) )
+					$params['time_begin'] = $time_begin;
+				if (isset($time_end) )
+					$params['time_end'] = $time_end;
+				if (isset($user_name) )
+					$params['user_name'] = $user_name;
+				break;
+			}
+			default: break;
+		}
 	}
 	
 	
@@ -109,6 +145,7 @@ class board_ctrl extends CI_Controller {
 			$data['statuses'] = $this->board_model->work_status('get');
 		}
 		
+		
 		if ($page == 'schedule_list_view') {
 			$data['schedule_list'] = $this->board_model->work_schedules('get');
 		}
@@ -117,6 +154,7 @@ class board_ctrl extends CI_Controller {
 			$params['user_id'] = $this->session->user_id;
 			$data['schedule_info'] = $this->board_model->work_schedules('get', $params);
 		}
+		
 		
 		if ($page == 'new_board_entry_view') {
 			$data['status_list'] = $this->board_model->work_status('get');
@@ -133,15 +171,18 @@ class board_ctrl extends CI_Controller {
 			$data['entry_info'] = $this->board_model->work_board_entry('get', $params);
 		}
 		
+		
 		if ($page == 'main_view') {
 			$params = array();
-			if ($this->input->cookie('board_show_all_days') != null) {
-				$d = date_create('now', new DateTimeZone('Europe/Moscow') );
-				$d->modify("-3 day");
-				$params['day_begin'] = $d->format("Y-m-d");
-				$d->modify("+4 day");
-				$params['day_end'] =  $d->format("Y-m-d");
-			}
+			// if ($this->input->cookie('board_show_all_days') != null) {
+				// $d = date_create('now', new DateTimeZone('Europe/Moscow') );
+				// $d->modify("-3 day");
+				// $params['day_begin'] = $d->format("Y-m-d");
+				// $d->modify("+4 day");
+				// $params['day_end'] =  $d->format("Y-m-d");
+			// }
+			//FILTERS
+			$this->make_filters('board', $params);
 			#$data['days'] = $this->board_model->work_board_entry('get', $params);
 			#print_r($data['days']);
 			#$params = array();
@@ -345,6 +386,12 @@ class board_ctrl extends CI_Controller {
 		#print_r($params);
 		$this->board_model->work_board_entry('delete', $params);
 			header("Location: /board");
+	}
+	
+	
+	
+	public function add_filter($page, $filter, $value) {
+		set_cookie($this->make_cookie_name($page, $filter), $value, 3600, $this->config->base_url);
 	}
 }
 
