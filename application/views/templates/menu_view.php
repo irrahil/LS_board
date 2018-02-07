@@ -28,7 +28,7 @@
 	    </li>
 		-->
     	<li class="menu-button fon" style='background-image: url(/image/can.png)'>
-		    <a href=/cmd_exit>Выход</a>
+		    <a href=/cmd_exit><img src="/image/close-btn.png" alt="Выход"> </a>
 	    </li>
 	</ul>
 </nav>

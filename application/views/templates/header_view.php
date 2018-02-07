@@ -17,8 +17,11 @@
 		
 		<link rel="stylesheet" href='/css/media_queries.css' media="only screen" />
 		-->
+		<link rel = "stylesheet" href="/css/fontello.css">
+		<link rel = "stylesheet" href="/css/fontello-embedded.css">
 		<link rel = "stylesheet" href="/css/common.css">
 		<link rel = "stylesheet" href="/css/media.css">
+		
 		<script src="/js/fields.js"></script>
 		
 	</head>

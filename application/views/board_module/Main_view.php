@@ -23,29 +23,35 @@
 						<div class="delete"><?php echo '<a href="/cmd_delete_entry?rec_id=', $board_entry['rec_id'], '"><img src="image/icon_delete.png" alt=""></a>'; ?></div>
 					</div>
 				</div>
+			<div class="navigation__arrows">
+				<a href="#"><i class="icon icon-left" aria-hidden="true"></i></a>
+				<a href="#"><i class="icon icon-right" aria-hidden="true"></i></a>
+			</div>
 			<?php endforeach; ?>	
-			</section>
+			
+			
+	</section>
 
 
-			<aside class='sidebar'>
-				<form action="" method="post" class='container_search'>
-					<input type="search" name="" placeholder="поиск" class="form_search" />
-					<input type="submit" name="" value="" class="search_icon" />
-				</form>
+	<aside class='sidebar'>
+		<form action="" method="post" class='container_search'>
+			<input type="search" name="" placeholder="поиск" class="form_search" />
+			<input type="submit" name="" value="" class="search_icon" />
+		</form>
 
-				<a href=/index.php/new_board_entry><button class='form_button' style='width:100%'>Добавить</button></a><br>
+		<a href=/index.php/new_board_entry><button class='form_button' style='width:100%'>Добавить</button></a><br>
 
-				<select name="filter_list" class="form_filter">
-					<option value="none">--Фильтр--</option>
-					<option value="user_name">Имя пользователя</option>
-					<option value="date_time">Дата и время</option>
-				</select>
-				<input type="text" name="filter_value" id="user_name_filter" value="">
-				<input type="date" name="filter_value" class="date" id="date_begin_filter">
-				<input type="date" name="filter_value" class="date" id="date_end_filter">
-				<input type="time" name="filter_value" class="time" id="time_begin_filter">
-				<input type="time" name="filter_value" class="time" id="time_end_filter">
-				
-			</aside>
+		<select name="filter_list" class="form_filter">
+			<option value="none">--Фильтр--</option>
+			<option value="user_name">Имя пользователя</option>
+			<option value="date_time">Дата и время</option>
+		</select>
+		<input type="text" name="filter_value" id="user_name_filter" value="">
+		<input type="date" name="filter_value" class="date" id="date_begin_filter">
+		<input type="date" name="filter_value" class="date" id="date_end_filter">
+		<input type="time" name="filter_value" class="time" id="time_begin_filter">
+		<input type="time" name="filter_value" class="time" id="time_end_filter">
+		
+	</aside>
 
 		</div>
