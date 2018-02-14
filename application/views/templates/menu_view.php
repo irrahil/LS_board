@@ -1,6 +1,15 @@
 <nav>
 <ul class="menu">
 		<li class="menu-button fon" style='background-image: url(/image/profile.png)'>
+		<div class="menu-button__profil">
+		Пользователь: <span class="menu-button__profil__name">Артём</span><br>
+		Задачи на сегодня:  <span class="menu-button__profil__q">2</span><br>
+		Мои задачи<br>
+		Мое расписание<br>
+		
+		Добавить задачу<br>
+		Выделить время<br>
+		</div>
 		</li>
 	
 	    <li class="menu-button fon">
