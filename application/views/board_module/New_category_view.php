@@ -22,10 +22,10 @@
 		</div>
 		
 		<div class="cat_form_label">
-			Пользователи:
+			<!-- Пользователи: -->
 		</div>
 		<div class="cat_form_field">
-			<select name="user_access[]" multiple size=10>
+			<select class="page-newcat__select scroll" name="user_access[]" multiple size=10>
 				<?php foreach ($user_list as $user) {
 					echo '<option value="', $user['user_id'], '">', $user['user_name'] ,'</option>';
 				}
@@ -40,7 +40,7 @@
 						Группы пользователей:
 					</div>
 					<div class="cat_form_field">
-						<select name="group_access[]" multiple size=10>
+						<select  class="page-newcat__select scroll" name="group_access[]" multiple size=10>
 				';
 				foreach ($group_list as $group) {
 					echo '<option value="', $group['group_id'], '">', $group['group_name'] ,'</option>';
@@ -61,7 +61,7 @@
 	<div class="cat_form_str page-newcat__centr">
 	
 		<div class="cat_form_button add-btn">
-			<input type=submit value="Добавить новый элемент">
+			<input type=submit value="Создать">
 		</div>
 	</div>
 	</form>
