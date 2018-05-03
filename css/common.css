@@ -1,10 +1,35 @@
+@font-face { 
+  font-family: 'OppenSans'; 
+  src: url('../font/OpenSans-Regular.woff2') format('woff2'),
+       url('../font/OpenSans-Regular.eot') format('eot'),
+       url('../font/OpenSans-Regular.svg') format('svg'),
+       url('../font/OpenSans-Regular.ttf')  format('truetype'), /* Только если нужна поддержка старых Android, иначе закомментировать */ 
+       url('../font/OpenSans-Regular.woff') format('woff'); 
+  font-weight: 400; 
+  font-style: normal; 
+}
+@font-face { 
+  font-family: 'OppenSans'; 
+  src: url('../font/OpenSans-Light.woff2') format('woff2'),
+       url('../font/OpenSans-Light.eot') format('eot'),
+       url('../font/OpenSans-Light.svg') format('svg'),
+       url('../font/OpenSans-Light.ttf')  format('truetype'), /* Только если нужна поддержка старых Android, иначе закомментировать */ 
+       url('../font/OpenSans-Light.woff') format('woff'); 
+  font-weight: 300; 
+  font-style: normal; 
+}
+
 /*BORDER STYLES*/
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box
 }
-
+body {
+	font-family: 'OppenSans', serif;
+	font-size: 14px;
+	color: #3c4049;
+}
 
 .main_form div{
 	width:100%;
@@ -339,6 +364,42 @@ input[type="search"] {
 }*/
 
 
+/*page categories*/
+.content-white {
+	background-color: #fff;
+}
+.page-cat__add-new {
+	margin: 0 30px;
+	padding: 30px 0;
+	border-bottom: 1px solid #3c4049;
+}
+.add-btn {
+	padding: 14px 45px;
+	margin: 0 20px;
+	border: 1px solid #56241f;
+	background-color: #56241f;
+	color: #fff;
+	border-radius: 10px;
+	text-decoration: none;
+}
 
-
-
+.add-btn:hover {
+	background-color: rgba(86, 36, 31, 0.6);
+}
+.page-cat__list_item {
+	display: flex;
+	padding: 30px;
+}
+.page-cat__list_col {
+	font-size: 16px;
+	min-width: 25%;
+}
+.list_col-username {
+	font-size: 16px;
+	padding: 0 15px;
+	text-decoration: underline;
+	min-width: 15%;
+}
+.btns {
+  padding: 0 3px;
+}

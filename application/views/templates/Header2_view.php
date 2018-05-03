@@ -7,4 +7,4 @@
         ?>
 			<div class="left_board"></div>
 			
-		    <div class = 'content'>
+		    <div class = 'content content-white'>
