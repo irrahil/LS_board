@@ -1,15 +1,15 @@
-<div class="cat_form">
-	<div class="cat_form_header">
-		Новый элемент справочника "Категории задач"
+<div class="cat_form page-newcat__cat_form">
+	<div class="cat_form_header page-newcat__cat_form_header">
+		Создать категорию
 	</div>
 	<form method=post action="/index.php/cmd_new_category">
-	<div class="cat_form_str">
+	<div class="cat_form_str page-newcat__str">
 	
-		<div class="cat_form_label">
+		<div class="cat_form_label page-newcat__label">
 			Наименование:
 		</div>
 		
-		<div class="cat_form_field">
+		<div class="cat_form_field page-newcat__field">
 			<input type=text name="categoryname" value="">
 		</div>
 	
@@ -17,7 +17,7 @@
 	
 	<div class="cat_form_str">
 	
-		<div class="cat_form_label">
+		<div class="cat_form_label page-newcat__rights">
 			Права доступа к категории:
 		</div>
 		
@@ -58,9 +58,9 @@
 		
 	</div>
 	
-	<div class="cat_form_str">
+	<div class="cat_form_str page-newcat__centr">
 	
-		<div class="cat_form_button">
+		<div class="cat_form_button add-btn">
 			<input type=submit value="Добавить новый элемент">
 		</div>
 	</div>
