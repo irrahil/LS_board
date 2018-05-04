@@ -7,6 +7,12 @@
       
 	</div>
 		
+
+<!--JAVA SCRIPT-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="/libs/slick/slick.min.js"></script>
+	
 	</body>
 	
 	
@@ -57,6 +63,14 @@
 			}
 		}
 
-		
+		$(document).ready(function(){
+      $('.page-schedule__items').slick({
+        infinite: false,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows: true,
+        dots: false,
+      });
+    });
 	</script>
 </html>

@@ -19,6 +19,8 @@
 		-->
 		<link rel = "stylesheet" href="/css/fontello.css">
 		<link rel = "stylesheet" href="/css/fontello-embedded.css">
+		<link rel = "stylesheet" href='/libs/slick/slick.css'>
+		<link rel = "stylesheet" href='/libs/slick/slick-theme.css'>
 		<link rel = "stylesheet" href="/css/common.css">
 		<link rel = "stylesheet" href="/css/media.css">
 		

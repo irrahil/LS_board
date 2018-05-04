@@ -1,7 +1,7 @@
 <div class="content-white">
-			<?php #print_r($category_list); ?>
+		<?php #print_r($category_list); ?>
 		
-		<div class="list_new_item page-cat__add-new">
+		<div class="list_new_item page__add-new">
 			<span>Добавить новую категорию задач</span>
 			<a class="add-btn" href=/index.php/new_cat>Добавить</a>
 		</div>
