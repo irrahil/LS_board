@@ -66,11 +66,15 @@
 		$(document).ready(function(){
       $('.page-schedule__items').slick({
         infinite: false,
-        slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToShow: 1,
+        slidesToScroll: 1,
         arrows: true,
-        dots: false,
-      });
+				dots: false,
+				prevArrow: '<i class="icon icon-left slider-arrows slider-arrow-left"></i>',
+    		nextArrow: '<i class="icon icon-right slider-arrows slider-arrow-right"></i>',
+				rows: 2,
+				slidesPerRow: 3,
+			});
     });
 	</script>
 </html>

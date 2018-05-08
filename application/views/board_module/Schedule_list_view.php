@@ -10,26 +10,25 @@
 	  <div class="page-schedule__list-wrap">
 			<div class="list_item page-schedule__list">
 				<div class="list_col">
-					<?php echo 'Пользователь: ' ,$record['user_name']; ?>
+					<?php echo '' ,$record['schedule_date']; ?>
 				</div>
 				<div class="list_col">
-					<?php echo 'Дата: ' ,$record['schedule_date']; ?>
-				</div>
-				<div class="list_col">
-					<?php echo 'Время начала: ' ,$record['schedule_time_begin']; ?>
-				</div>
-				<div class="list_col">
-					<?php echo 'Время окончания: ' ,$record['schedule_time_end']; ?>
+					<div class="list_col-item">
+						<?php echo '' ,$record['user_name']; ?>
+					</div>
+					
+					<?php echo '' ,$record['schedule_time_begin']; ?>
+					<?php echo ' - '?>
+					<?php echo '' ,$record['schedule_time_end']; ?>
 				</div>
 				<div class="list_col">
 					<?php echo 'Комментарии: ' ,$record['comments']; ?>
 				</div>
-				<div class="list_ctrl">
+				<div class="list_ctrl page-schedule__edit">
 					<?php echo '<a href=/user_entry?rec_id=', $record['rec_id'] , '>
 					<img src="image/icon_edit.png" alt="Редактировать">
 					</a>'; ?>
-				</div>
-				<div class="list_ctrl">
+
 					<?php echo '<a href=/cmd_delete_schedule?rec_id=', $record['rec_id'] , '>
 					<img src="image/icon_delete.png" alt="Удалить">
 					</a>'; ?>
